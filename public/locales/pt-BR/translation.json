@@ -1,0 +1,46 @@
+{
+  "login": {
+    "title": "Catálogo",
+    "subtitle": "Entre com sua conta para continuar",
+    "emailLabel": "E-mail",
+    "passwordLabel": "Senha",
+    "forgotPassword": "Esqueceu sua senha?",
+    "submitButton": "Entrar",
+    "noAccount": "Não tem uma conta?",
+    "signUp": "Cadastre-se",
+    "terms": {
+      "fullText": "Ao clicar em continuar, você concorda com os nossos <1>Termos de Serviço</1> e <3>Política de Privacidade</3>."
+    }
+  },
+  "navUser": {
+    "dashboard": "Painel de Controle",
+    "theme": {
+      "title": "Tema",
+      "light": "Claro",
+      "dark": "Escuro"
+    },
+    "language": {
+      "title": "Idioma",
+      "pt": "Português",
+      "en": "Inglês",
+      "es": "Espanhol"
+    },
+    "logout": "Sair"
+  },
+  "breadcrumbs": {
+    "home": "Início",
+    "dashboard": "Painel de Controle"
+  },
+  "catalogIndex": {
+    "title": "Laboratórios Virtuais: A Prática Real para o Ensino Superior",
+    "p1": "Leve a experiência prática dos laboratórios de engenharia e saúde para seus alunos, onde quer que eles estejam.",
+    "p2": "Nossos Laboratórios Virtuais replicam com altíssima fidelidade os experimentos realizados nos equipamentos físicos da ALGETEC. Totalmente alinhados ao plano pedagógico da sua IES, eles permitem que o aluno domine os conceitos práticos da disciplina em uma plataforma interativa e segura.",
+    "journeyTitle": "Como funciona a jornada:",
+    "journeyStep1": "<strong>Integração Fluida:</strong> O Ambiente Virtual de Aprendizagem (AVA) indica ao aluno o momento exato de realizar a prática virtual.",
+    "journeyStep2": "<strong>Aprendizagem e Domínio:</strong> O estudante executa os experimentos roteirizados, aprende os conceitos e se familiariza com os processos.",
+    "journeyStep3": "<strong>Preparação Completa:</strong> Após finalizar a prática virtual, o aluno está totalmente habilitado e preparado para a experimentação no equipamento físico da ALGETEC.",
+    "p3": "Transforme o ensino na sua IES.",
+    "p4": "Os especialistas da <strong>Plataforma A</strong> estão prontos para orientar qual a melhor oferta de laboratórios virtuais ALGETEC para sua instituição. Vamos conversar sobre os próximos passos!",
+    "button": "Fale com um especialista"
+  }
+}

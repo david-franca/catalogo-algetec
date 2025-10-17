@@ -1,0 +1,46 @@
+{
+  "login": {
+    "title": "Catálogo",
+    "subtitle": "Inicia sesión en tu cuenta para continuar",
+    "emailLabel": "Correo electrónico",
+    "passwordLabel": "Contraseña",
+    "forgotPassword": "¿Olvidaste tu contraseña?",
+    "submitButton": "Iniciar sesión",
+    "noAccount": "¿No tienes una cuenta?",
+    "signUp": "Regístrate",
+    "terms": {
+      "fullText": "Al hacer clic en continuar, aceptas nuestros <1>Términos de Servicio</1> y <3>Política de Privacidad</3>."
+    }
+  },
+  "navUser": {
+    "dashboard": "Panel de Control",
+    "theme": {
+      "title": "Tema",
+      "light": "Claro",
+      "dark": "Oscuro"
+    },
+    "language": {
+      "title": "Idioma",
+      "pt": "Portugués",
+      "en": "Inglés",
+      "es": "Español"
+    },
+    "logout": "Cerrar sesión"
+  },
+  "breadcrumbs": {
+    "home": "Inicio",
+    "dashboard": "Panel de Control"
+  },
+  "catalogIndex": {
+    "title": "Laboratorios Virtuales: La Práctica Real para la Educación Superior",
+    "p1": "Lleve la experiencia práctica de los laboratorios de ingeniería y salud a sus alumnos, dondequiera que estén.",
+    "p2": "Nuestros Laboratorios Virtuales replican con altísima fidelidad los experimentos realizados en los equipos físicos de ALGETEC. Totalmente alineados con el plan pedagógico de su IES, permiten que el alumno domine los conceptos prácticos de la asignatura en una plataforma interactiva y segura.",
+    "journeyTitle": "Cómo funciona el recorrido:",
+    "journeyStep1": "<strong>Integración Fluida:</strong> El Entorno Virtual de Aprendizaje (EVA) indica al alumno el momento exacto para realizar la práctica virtual.",
+    "journeyStep2": "<strong>Aprendizaje y Dominio:</strong> El estudiante ejecuta los experimentos guiados, aprende los conceptos y se familiariza con los procesos.",
+    "journeyStep3": "<strong>Preparación Completa:</strong> Después de finalizar la práctica virtual, el alumno está totalmente habilitado y preparado para la experimentación en el equipo físico de ALGETEC.",
+    "p3": "Transforme la enseñanza en su IES.",
+    "p4": "Los especialistas de <strong>Plataforma A</strong> están listos para orientarle sobre la mejor oferta de laboratorios virtuales ALGETEC para su institución. ¡Hablemos sobre los próximos pasos!",
+    "button": "Hable con un especialista"
+  }
+}

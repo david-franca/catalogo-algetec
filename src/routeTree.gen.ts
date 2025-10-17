@@ -8,1942 +8,279 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import { createFileRoute } from '@tanstack/react-router'
+import { Route as rootRouteImport } from './routes/__root'
+import { Route as PublicRouteImport } from './routes/_public'
+import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
+import { Route as PublicIndexRouteImport } from './routes/_public/index'
+import { Route as PublicSignupRouteImport } from './routes/_public/signup'
+import { Route as PublicRecoverRouteImport } from './routes/_public/recover'
+import { Route as AuthenticatedCatalogRouteImport } from './routes/_authenticated/catalog'
+import { Route as AuthenticatedCatalogIndexRouteImport } from './routes/_authenticated/catalog/index'
+import { Route as AuthenticatedCatalogDashboardRouteImport } from './routes/_authenticated/catalog/dashboard'
+import { Route as AuthenticatedCatalogCategorySlugRouteImport } from './routes/_authenticated/catalog/$categorySlug'
+import { Route as AuthenticatedCatalogCategorySlugSubcategorySlugRouteImport } from './routes/_authenticated/catalog/$categorySlug/$subcategorySlug'
 
-// Import Routes
-
-import { Route as rootRoute } from './routes/__root'
-import { Route as LoginImport } from './routes/login'
-import { Route as DashboardImport } from './routes/dashboard'
-import { Route as DashboardUsersIndexImport } from './routes/dashboard/users/index'
-import { Route as DashboardReleasesIndexImport } from './routes/dashboard/releases/index'
-import { Route as DashboardLocalesIndexImport } from './routes/dashboard/locales/index'
-import { Route as DashboardLabsIndexImport } from './routes/dashboard/labs/index'
-import { Route as DashboardIssuesIndexImport } from './routes/dashboard/issues/index'
-import { Route as DashboardInstitutionsIndexImport } from './routes/dashboard/institutions/index'
-import { Route as DashboardDocumentsIndexImport } from './routes/dashboard/documents/index'
-import { Route as DashboardDemandsIndexImport } from './routes/dashboard/demands/index'
-import { Route as DashboardChecklistsIndexImport } from './routes/dashboard/checklists/index'
-import { Route as DashboardCalendarIndexImport } from './routes/dashboard/calendar/index'
-import { Route as DashboardCurriculumsSkillsIndexImport } from './routes/dashboard/curriculums/skills/index'
-import { Route as DashboardCurriculumsObjectsIndexImport } from './routes/dashboard/curriculums/objects/index'
-import { Route as DashboardLocalesShowIdImport } from './routes/dashboard/locales/show.$id'
-import { Route as DashboardLocalesEditIdImport } from './routes/dashboard/locales/edit.$id'
-import { Route as DashboardLabsShowIdImport } from './routes/dashboard/labs/show.$id'
-
-// Create Virtual Routes
-
-const IndexLazyImport = createFileRoute('/')()
-const DashboardIndexLazyImport = createFileRoute('/dashboard/')()
-const DashboardTranslationsLazyImport = createFileRoute(
-  '/dashboard/translations',
-)()
-const DashboardProfileLazyImport = createFileRoute('/dashboard/profile')()
-const DashboardPermissionsLazyImport = createFileRoute(
-  '/dashboard/permissions',
-)()
-const DashboardNewsLazyImport = createFileRoute('/dashboard/news')()
-const DashboardChatLazyImport = createFileRoute('/dashboard/chat')()
-const DashboardWikiIndexLazyImport = createFileRoute('/dashboard/wiki/')()
-const DashboardChatIndexLazyImport = createFileRoute('/dashboard/chat/')()
-const DashboardWikiCreateLazyImport = createFileRoute(
-  '/dashboard/wiki/create',
-)()
-const DashboardWikiArchivedLazyImport = createFileRoute(
-  '/dashboard/wiki/archived',
-)()
-const DashboardUsersCreateLazyImport = createFileRoute(
-  '/dashboard/users/create',
-)()
-const DashboardReleasesCreateLazyImport = createFileRoute(
-  '/dashboard/releases/create',
-)()
-const DashboardLocalesCreateLazyImport = createFileRoute(
-  '/dashboard/locales/create',
-)()
-const DashboardIssuesCreateLazyImport = createFileRoute(
-  '/dashboard/issues/create',
-)()
-const DashboardInstitutionsCreateLazyImport = createFileRoute(
-  '/dashboard/institutions/create',
-)()
-const DashboardDocumentsCreateLazyImport = createFileRoute(
-  '/dashboard/documents/create',
-)()
-const DashboardDemandsCreateLazyImport = createFileRoute(
-  '/dashboard/demands/create',
-)()
-const DashboardChecklistsCreateLazyImport = createFileRoute(
-  '/dashboard/checklists/create',
-)()
-const DashboardChatDesignerLazyImport = createFileRoute(
-  '/dashboard/chat/designer',
-)()
-const DashboardChatAnalyzeScriptsLazyImport = createFileRoute(
-  '/dashboard/chat/analyze-scripts',
-)()
-const DashboardCurriculumsPracticesIndexLazyImport = createFileRoute(
-  '/dashboard/curriculums/practices/',
-)()
-const DashboardWikiShowIdLazyImport = createFileRoute(
-  '/dashboard/wiki/show/$id',
-)()
-const DashboardWikiEditIdLazyImport = createFileRoute(
-  '/dashboard/wiki/edit/$id',
-)()
-const DashboardUsersShowIdLazyImport = createFileRoute(
-  '/dashboard/users/show/$id',
-)()
-const DashboardUsersEditIdLazyImport = createFileRoute(
-  '/dashboard/users/edit/$id',
-)()
-const DashboardReleasesShowIdLazyImport = createFileRoute(
-  '/dashboard/releases/show/$id',
-)()
-const DashboardReleasesEditIdLazyImport = createFileRoute(
-  '/dashboard/releases/edit/$id',
-)()
-const DashboardLocalesMassEditIdLazyImport = createFileRoute(
-  '/dashboard/locales/mass-edit/$id',
-)()
-const DashboardIssuesShowIdLazyImport = createFileRoute(
-  '/dashboard/issues/show/$id',
-)()
-const DashboardIssuesEditIdLazyImport = createFileRoute(
-  '/dashboard/issues/edit/$id',
-)()
-const DashboardInstitutionsShowIdLazyImport = createFileRoute(
-  '/dashboard/institutions/show/$id',
-)()
-const DashboardInstitutionsEditIdLazyImport = createFileRoute(
-  '/dashboard/institutions/edit/$id',
-)()
-const DashboardDocumentsShowIdLazyImport = createFileRoute(
-  '/dashboard/documents/show/$id',
-)()
-const DashboardDocumentsEditIdLazyImport = createFileRoute(
-  '/dashboard/documents/edit/$id',
-)()
-const DashboardDemandsShowIdLazyImport = createFileRoute(
-  '/dashboard/demands/show/$id',
-)()
-const DashboardDemandsEditIdLazyImport = createFileRoute(
-  '/dashboard/demands/edit/$id',
-)()
-const DashboardChecklistsShowIdLazyImport = createFileRoute(
-  '/dashboard/checklists/show/$id',
-)()
-const DashboardChecklistsEditIdLazyImport = createFileRoute(
-  '/dashboard/checklists/edit/$id',
-)()
-const DashboardCurriculumsSkillsShowIdLazyImport = createFileRoute(
-  '/dashboard/curriculums/skills/show/$id',
-)()
-const DashboardCurriculumsSkillsEditIdLazyImport = createFileRoute(
-  '/dashboard/curriculums/skills/edit/$id',
-)()
-const DashboardCurriculumsPracticesShowIdLazyImport = createFileRoute(
-  '/dashboard/curriculums/practices/show/$id',
-)()
-const DashboardCurriculumsPracticesEditIdLazyImport = createFileRoute(
-  '/dashboard/curriculums/practices/edit/$id',
-)()
-
-// Create/Update Routes
-
-const LoginRoute = LoginImport.update({
-  id: '/login',
-  path: '/login',
-  getParentRoute: () => rootRoute,
+const PublicRoute = PublicRouteImport.update({
+  id: '/_public',
+  getParentRoute: () => rootRouteImport,
 } as any)
-
-const DashboardRoute = DashboardImport.update({
-  id: '/dashboard',
-  path: '/dashboard',
-  getParentRoute: () => rootRoute,
+const AuthenticatedRoute = AuthenticatedRouteImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
 } as any)
-
-const IndexLazyRoute = IndexLazyImport.update({
+const PublicIndexRoute = PublicIndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRoute,
-} as any).lazy(() => import('./routes/index.lazy').then((d) => d.Route))
-
-const DashboardIndexLazyRoute = DashboardIndexLazyImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => DashboardRoute,
-} as any).lazy(() =>
-  import('./routes/dashboard/index.lazy').then((d) => d.Route),
-)
-
-const DashboardTranslationsLazyRoute = DashboardTranslationsLazyImport.update({
-  id: '/translations',
-  path: '/translations',
-  getParentRoute: () => DashboardRoute,
-} as any).lazy(() =>
-  import('./routes/dashboard/translations.lazy').then((d) => d.Route),
-)
-
-const DashboardProfileLazyRoute = DashboardProfileLazyImport.update({
-  id: '/profile',
-  path: '/profile',
-  getParentRoute: () => DashboardRoute,
-} as any).lazy(() =>
-  import('./routes/dashboard/profile.lazy').then((d) => d.Route),
-)
-
-const DashboardPermissionsLazyRoute = DashboardPermissionsLazyImport.update({
-  id: '/permissions',
-  path: '/permissions',
-  getParentRoute: () => DashboardRoute,
-} as any).lazy(() =>
-  import('./routes/dashboard/permissions.lazy').then((d) => d.Route),
-)
-
-const DashboardNewsLazyRoute = DashboardNewsLazyImport.update({
-  id: '/news',
-  path: '/news',
-  getParentRoute: () => DashboardRoute,
-} as any).lazy(() =>
-  import('./routes/dashboard/news.lazy').then((d) => d.Route),
-)
-
-const DashboardChatLazyRoute = DashboardChatLazyImport.update({
-  id: '/chat',
-  path: '/chat',
-  getParentRoute: () => DashboardRoute,
-} as any).lazy(() =>
-  import('./routes/dashboard/chat.lazy').then((d) => d.Route),
-)
-
-const DashboardWikiIndexLazyRoute = DashboardWikiIndexLazyImport.update({
-  id: '/wiki/',
-  path: '/wiki/',
-  getParentRoute: () => DashboardRoute,
-} as any).lazy(() =>
-  import('./routes/dashboard/wiki/index.lazy').then((d) => d.Route),
-)
-
-const DashboardChatIndexLazyRoute = DashboardChatIndexLazyImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => DashboardChatLazyRoute,
-} as any).lazy(() =>
-  import('./routes/dashboard/chat/index.lazy').then((d) => d.Route),
-)
-
-const DashboardUsersIndexRoute = DashboardUsersIndexImport.update({
-  id: '/users/',
-  path: '/users/',
-  getParentRoute: () => DashboardRoute,
-} as any).lazy(() =>
-  import('./routes/dashboard/users/index.lazy').then((d) => d.Route),
-)
-
-const DashboardReleasesIndexRoute = DashboardReleasesIndexImport.update({
-  id: '/releases/',
-  path: '/releases/',
-  getParentRoute: () => DashboardRoute,
-} as any).lazy(() =>
-  import('./routes/dashboard/releases/index.lazy').then((d) => d.Route),
-)
-
-const DashboardLocalesIndexRoute = DashboardLocalesIndexImport.update({
-  id: '/locales/',
-  path: '/locales/',
-  getParentRoute: () => DashboardRoute,
-} as any).lazy(() =>
-  import('./routes/dashboard/locales/index.lazy').then((d) => d.Route),
-)
-
-const DashboardLabsIndexRoute = DashboardLabsIndexImport.update({
-  id: '/labs/',
-  path: '/labs/',
-  getParentRoute: () => DashboardRoute,
-} as any).lazy(() =>
-  import('./routes/dashboard/labs/index.lazy').then((d) => d.Route),
-)
-
-const DashboardIssuesIndexRoute = DashboardIssuesIndexImport.update({
-  id: '/issues/',
-  path: '/issues/',
-  getParentRoute: () => DashboardRoute,
-} as any).lazy(() =>
-  import('./routes/dashboard/issues/index.lazy').then((d) => d.Route),
-)
-
-const DashboardInstitutionsIndexRoute = DashboardInstitutionsIndexImport.update(
-  {
-    id: '/institutions/',
-    path: '/institutions/',
-    getParentRoute: () => DashboardRoute,
-  } as any,
-).lazy(() =>
-  import('./routes/dashboard/institutions/index.lazy').then((d) => d.Route),
-)
-
-const DashboardDocumentsIndexRoute = DashboardDocumentsIndexImport.update({
-  id: '/documents/',
-  path: '/documents/',
-  getParentRoute: () => DashboardRoute,
-} as any).lazy(() =>
-  import('./routes/dashboard/documents/index.lazy').then((d) => d.Route),
-)
-
-const DashboardDemandsIndexRoute = DashboardDemandsIndexImport.update({
-  id: '/demands/',
-  path: '/demands/',
-  getParentRoute: () => DashboardRoute,
-} as any).lazy(() =>
-  import('./routes/dashboard/demands/index.lazy').then((d) => d.Route),
-)
-
-const DashboardChecklistsIndexRoute = DashboardChecklistsIndexImport.update({
-  id: '/checklists/',
-  path: '/checklists/',
-  getParentRoute: () => DashboardRoute,
-} as any).lazy(() =>
-  import('./routes/dashboard/checklists/index.lazy').then((d) => d.Route),
-)
-
-const DashboardCalendarIndexRoute = DashboardCalendarIndexImport.update({
-  id: '/calendar/',
-  path: '/calendar/',
-  getParentRoute: () => DashboardRoute,
-} as any).lazy(() =>
-  import('./routes/dashboard/calendar/index.lazy').then((d) => d.Route),
-)
-
-const DashboardWikiCreateLazyRoute = DashboardWikiCreateLazyImport.update({
-  id: '/wiki/create',
-  path: '/wiki/create',
-  getParentRoute: () => DashboardRoute,
-} as any).lazy(() =>
-  import('./routes/dashboard/wiki/create.lazy').then((d) => d.Route),
-)
-
-const DashboardWikiArchivedLazyRoute = DashboardWikiArchivedLazyImport.update({
-  id: '/wiki/archived',
-  path: '/wiki/archived',
-  getParentRoute: () => DashboardRoute,
-} as any).lazy(() =>
-  import('./routes/dashboard/wiki/archived.lazy').then((d) => d.Route),
-)
-
-const DashboardUsersCreateLazyRoute = DashboardUsersCreateLazyImport.update({
-  id: '/users/create',
-  path: '/users/create',
-  getParentRoute: () => DashboardRoute,
-} as any).lazy(() =>
-  import('./routes/dashboard/users/create.lazy').then((d) => d.Route),
-)
-
-const DashboardReleasesCreateLazyRoute =
-  DashboardReleasesCreateLazyImport.update({
-    id: '/releases/create',
-    path: '/releases/create',
-    getParentRoute: () => DashboardRoute,
-  } as any).lazy(() =>
-    import('./routes/dashboard/releases/create.lazy').then((d) => d.Route),
-  )
-
-const DashboardLocalesCreateLazyRoute = DashboardLocalesCreateLazyImport.update(
-  {
-    id: '/locales/create',
-    path: '/locales/create',
-    getParentRoute: () => DashboardRoute,
-  } as any,
-).lazy(() =>
-  import('./routes/dashboard/locales/create.lazy').then((d) => d.Route),
-)
-
-const DashboardIssuesCreateLazyRoute = DashboardIssuesCreateLazyImport.update({
-  id: '/issues/create',
-  path: '/issues/create',
-  getParentRoute: () => DashboardRoute,
-} as any).lazy(() =>
-  import('./routes/dashboard/issues/create.lazy').then((d) => d.Route),
-)
-
-const DashboardInstitutionsCreateLazyRoute =
-  DashboardInstitutionsCreateLazyImport.update({
-    id: '/institutions/create',
-    path: '/institutions/create',
-    getParentRoute: () => DashboardRoute,
-  } as any).lazy(() =>
-    import('./routes/dashboard/institutions/create.lazy').then((d) => d.Route),
-  )
-
-const DashboardDocumentsCreateLazyRoute =
-  DashboardDocumentsCreateLazyImport.update({
-    id: '/documents/create',
-    path: '/documents/create',
-    getParentRoute: () => DashboardRoute,
-  } as any).lazy(() =>
-    import('./routes/dashboard/documents/create.lazy').then((d) => d.Route),
-  )
-
-const DashboardDemandsCreateLazyRoute = DashboardDemandsCreateLazyImport.update(
-  {
-    id: '/demands/create',
-    path: '/demands/create',
-    getParentRoute: () => DashboardRoute,
-  } as any,
-).lazy(() =>
-  import('./routes/dashboard/demands/create.lazy').then((d) => d.Route),
-)
-
-const DashboardChecklistsCreateLazyRoute =
-  DashboardChecklistsCreateLazyImport.update({
-    id: '/checklists/create',
-    path: '/checklists/create',
-    getParentRoute: () => DashboardRoute,
-  } as any).lazy(() =>
-    import('./routes/dashboard/checklists/create.lazy').then((d) => d.Route),
-  )
-
-const DashboardChatDesignerLazyRoute = DashboardChatDesignerLazyImport.update({
-  id: '/designer',
-  path: '/designer',
-  getParentRoute: () => DashboardChatLazyRoute,
-} as any).lazy(() =>
-  import('./routes/dashboard/chat/designer.lazy').then((d) => d.Route),
-)
-
-const DashboardChatAnalyzeScriptsLazyRoute =
-  DashboardChatAnalyzeScriptsLazyImport.update({
-    id: '/analyze-scripts',
-    path: '/analyze-scripts',
-    getParentRoute: () => DashboardChatLazyRoute,
-  } as any).lazy(() =>
-    import('./routes/dashboard/chat/analyze-scripts.lazy').then((d) => d.Route),
-  )
-
-const DashboardCurriculumsPracticesIndexLazyRoute =
-  DashboardCurriculumsPracticesIndexLazyImport.update({
-    id: '/curriculums/practices/',
-    path: '/curriculums/practices/',
-    getParentRoute: () => DashboardRoute,
-  } as any).lazy(() =>
-    import('./routes/dashboard/curriculums/practices/index.lazy').then(
-      (d) => d.Route,
-    ),
-  )
-
-const DashboardCurriculumsSkillsIndexRoute =
-  DashboardCurriculumsSkillsIndexImport.update({
-    id: '/curriculums/skills/',
-    path: '/curriculums/skills/',
-    getParentRoute: () => DashboardRoute,
-  } as any).lazy(() =>
-    import('./routes/dashboard/curriculums/skills/index.lazy').then(
-      (d) => d.Route,
-    ),
-  )
-
-const DashboardCurriculumsObjectsIndexRoute =
-  DashboardCurriculumsObjectsIndexImport.update({
-    id: '/curriculums/objects/',
-    path: '/curriculums/objects/',
-    getParentRoute: () => DashboardRoute,
-  } as any).lazy(() =>
-    import('./routes/dashboard/curriculums/objects/index.lazy').then(
-      (d) => d.Route,
-    ),
-  )
-
-const DashboardWikiShowIdLazyRoute = DashboardWikiShowIdLazyImport.update({
-  id: '/wiki/show/$id',
-  path: '/wiki/show/$id',
-  getParentRoute: () => DashboardRoute,
-} as any).lazy(() =>
-  import('./routes/dashboard/wiki/show.$id.lazy').then((d) => d.Route),
-)
-
-const DashboardWikiEditIdLazyRoute = DashboardWikiEditIdLazyImport.update({
-  id: '/wiki/edit/$id',
-  path: '/wiki/edit/$id',
-  getParentRoute: () => DashboardRoute,
-} as any).lazy(() =>
-  import('./routes/dashboard/wiki/edit.$id.lazy').then((d) => d.Route),
-)
-
-const DashboardUsersShowIdLazyRoute = DashboardUsersShowIdLazyImport.update({
-  id: '/users/show/$id',
-  path: '/users/show/$id',
-  getParentRoute: () => DashboardRoute,
-} as any).lazy(() =>
-  import('./routes/dashboard/users/show.$id.lazy').then((d) => d.Route),
-)
-
-const DashboardUsersEditIdLazyRoute = DashboardUsersEditIdLazyImport.update({
-  id: '/users/edit/$id',
-  path: '/users/edit/$id',
-  getParentRoute: () => DashboardRoute,
-} as any).lazy(() =>
-  import('./routes/dashboard/users/edit.$id.lazy').then((d) => d.Route),
-)
-
-const DashboardReleasesShowIdLazyRoute =
-  DashboardReleasesShowIdLazyImport.update({
-    id: '/releases/show/$id',
-    path: '/releases/show/$id',
-    getParentRoute: () => DashboardRoute,
-  } as any).lazy(() =>
-    import('./routes/dashboard/releases/show.$id.lazy').then((d) => d.Route),
-  )
-
-const DashboardReleasesEditIdLazyRoute =
-  DashboardReleasesEditIdLazyImport.update({
-    id: '/releases/edit/$id',
-    path: '/releases/edit/$id',
-    getParentRoute: () => DashboardRoute,
-  } as any).lazy(() =>
-    import('./routes/dashboard/releases/edit.$id.lazy').then((d) => d.Route),
-  )
-
-const DashboardLocalesMassEditIdLazyRoute =
-  DashboardLocalesMassEditIdLazyImport.update({
-    id: '/locales/mass-edit/$id',
-    path: '/locales/mass-edit/$id',
-    getParentRoute: () => DashboardRoute,
-  } as any).lazy(() =>
-    import('./routes/dashboard/locales/mass-edit.$id.lazy').then(
-      (d) => d.Route,
-    ),
-  )
-
-const DashboardIssuesShowIdLazyRoute = DashboardIssuesShowIdLazyImport.update({
-  id: '/issues/show/$id',
-  path: '/issues/show/$id',
-  getParentRoute: () => DashboardRoute,
-} as any).lazy(() =>
-  import('./routes/dashboard/issues/show.$id.lazy').then((d) => d.Route),
-)
-
-const DashboardIssuesEditIdLazyRoute = DashboardIssuesEditIdLazyImport.update({
-  id: '/issues/edit/$id',
-  path: '/issues/edit/$id',
-  getParentRoute: () => DashboardRoute,
-} as any).lazy(() =>
-  import('./routes/dashboard/issues/edit.$id.lazy').then((d) => d.Route),
-)
-
-const DashboardInstitutionsShowIdLazyRoute =
-  DashboardInstitutionsShowIdLazyImport.update({
-    id: '/institutions/show/$id',
-    path: '/institutions/show/$id',
-    getParentRoute: () => DashboardRoute,
-  } as any).lazy(() =>
-    import('./routes/dashboard/institutions/show.$id.lazy').then(
-      (d) => d.Route,
-    ),
-  )
-
-const DashboardInstitutionsEditIdLazyRoute =
-  DashboardInstitutionsEditIdLazyImport.update({
-    id: '/institutions/edit/$id',
-    path: '/institutions/edit/$id',
-    getParentRoute: () => DashboardRoute,
-  } as any).lazy(() =>
-    import('./routes/dashboard/institutions/edit.$id.lazy').then(
-      (d) => d.Route,
-    ),
-  )
-
-const DashboardDocumentsShowIdLazyRoute =
-  DashboardDocumentsShowIdLazyImport.update({
-    id: '/documents/show/$id',
-    path: '/documents/show/$id',
-    getParentRoute: () => DashboardRoute,
-  } as any).lazy(() =>
-    import('./routes/dashboard/documents/show.$id.lazy').then((d) => d.Route),
-  )
-
-const DashboardDocumentsEditIdLazyRoute =
-  DashboardDocumentsEditIdLazyImport.update({
-    id: '/documents/edit/$id',
-    path: '/documents/edit/$id',
-    getParentRoute: () => DashboardRoute,
-  } as any).lazy(() =>
-    import('./routes/dashboard/documents/edit.$id.lazy').then((d) => d.Route),
-  )
-
-const DashboardDemandsShowIdLazyRoute = DashboardDemandsShowIdLazyImport.update(
-  {
-    id: '/demands/show/$id',
-    path: '/demands/show/$id',
-    getParentRoute: () => DashboardRoute,
-  } as any,
-).lazy(() =>
-  import('./routes/dashboard/demands/show.$id.lazy').then((d) => d.Route),
-)
-
-const DashboardDemandsEditIdLazyRoute = DashboardDemandsEditIdLazyImport.update(
-  {
-    id: '/demands/edit/$id',
-    path: '/demands/edit/$id',
-    getParentRoute: () => DashboardRoute,
-  } as any,
-).lazy(() =>
-  import('./routes/dashboard/demands/edit.$id.lazy').then((d) => d.Route),
-)
-
-const DashboardChecklistsShowIdLazyRoute =
-  DashboardChecklistsShowIdLazyImport.update({
-    id: '/checklists/show/$id',
-    path: '/checklists/show/$id',
-    getParentRoute: () => DashboardRoute,
-  } as any).lazy(() =>
-    import('./routes/dashboard/checklists/show.$id.lazy').then((d) => d.Route),
-  )
-
-const DashboardChecklistsEditIdLazyRoute =
-  DashboardChecklistsEditIdLazyImport.update({
-    id: '/checklists/edit/$id',
-    path: '/checklists/edit/$id',
-    getParentRoute: () => DashboardRoute,
-  } as any).lazy(() =>
-    import('./routes/dashboard/checklists/edit.$id.lazy').then((d) => d.Route),
-  )
-
-const DashboardLocalesShowIdRoute = DashboardLocalesShowIdImport.update({
-  id: '/locales/show/$id',
-  path: '/locales/show/$id',
-  getParentRoute: () => DashboardRoute,
-} as any).lazy(() =>
-  import('./routes/dashboard/locales/show.$id.lazy').then((d) => d.Route),
-)
-
-const DashboardLocalesEditIdRoute = DashboardLocalesEditIdImport.update({
-  id: '/locales/edit/$id',
-  path: '/locales/edit/$id',
-  getParentRoute: () => DashboardRoute,
-} as any).lazy(() =>
-  import('./routes/dashboard/locales/edit.$id.lazy').then((d) => d.Route),
-)
-
-const DashboardLabsShowIdRoute = DashboardLabsShowIdImport.update({
-  id: '/labs/show/$id',
-  path: '/labs/show/$id',
-  getParentRoute: () => DashboardRoute,
-} as any).lazy(() =>
-  import('./routes/dashboard/labs/show.$id.lazy').then((d) => d.Route),
-)
-
-const DashboardCurriculumsSkillsShowIdLazyRoute =
-  DashboardCurriculumsSkillsShowIdLazyImport.update({
-    id: '/curriculums/skills/show/$id',
-    path: '/curriculums/skills/show/$id',
-    getParentRoute: () => DashboardRoute,
-  } as any).lazy(() =>
-    import('./routes/dashboard/curriculums/skills/show.$id.lazy').then(
-      (d) => d.Route,
-    ),
-  )
-
-const DashboardCurriculumsSkillsEditIdLazyRoute =
-  DashboardCurriculumsSkillsEditIdLazyImport.update({
-    id: '/curriculums/skills/edit/$id',
-    path: '/curriculums/skills/edit/$id',
-    getParentRoute: () => DashboardRoute,
-  } as any).lazy(() =>
-    import('./routes/dashboard/curriculums/skills/edit.$id.lazy').then(
-      (d) => d.Route,
-    ),
-  )
-
-const DashboardCurriculumsPracticesShowIdLazyRoute =
-  DashboardCurriculumsPracticesShowIdLazyImport.update({
-    id: '/curriculums/practices/show/$id',
-    path: '/curriculums/practices/show/$id',
-    getParentRoute: () => DashboardRoute,
-  } as any).lazy(() =>
-    import('./routes/dashboard/curriculums/practices/show.$id.lazy').then(
-      (d) => d.Route,
-    ),
-  )
-
-const DashboardCurriculumsPracticesEditIdLazyRoute =
-  DashboardCurriculumsPracticesEditIdLazyImport.update({
-    id: '/curriculums/practices/edit/$id',
-    path: '/curriculums/practices/edit/$id',
-    getParentRoute: () => DashboardRoute,
-  } as any).lazy(() =>
-    import('./routes/dashboard/curriculums/practices/edit.$id.lazy').then(
-      (d) => d.Route,
-    ),
-  )
-
-// Populate the FileRoutesByPath interface
-
-declare module '@tanstack/react-router' {
-  interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexLazyImport
-      parentRoute: typeof rootRoute
-    }
-    '/dashboard': {
-      id: '/dashboard'
-      path: '/dashboard'
-      fullPath: '/dashboard'
-      preLoaderRoute: typeof DashboardImport
-      parentRoute: typeof rootRoute
-    }
-    '/login': {
-      id: '/login'
-      path: '/login'
-      fullPath: '/login'
-      preLoaderRoute: typeof LoginImport
-      parentRoute: typeof rootRoute
-    }
-    '/dashboard/chat': {
-      id: '/dashboard/chat'
-      path: '/chat'
-      fullPath: '/dashboard/chat'
-      preLoaderRoute: typeof DashboardChatLazyImport
-      parentRoute: typeof DashboardImport
-    }
-    '/dashboard/news': {
-      id: '/dashboard/news'
-      path: '/news'
-      fullPath: '/dashboard/news'
-      preLoaderRoute: typeof DashboardNewsLazyImport
-      parentRoute: typeof DashboardImport
-    }
-    '/dashboard/permissions': {
-      id: '/dashboard/permissions'
-      path: '/permissions'
-      fullPath: '/dashboard/permissions'
-      preLoaderRoute: typeof DashboardPermissionsLazyImport
-      parentRoute: typeof DashboardImport
-    }
-    '/dashboard/profile': {
-      id: '/dashboard/profile'
-      path: '/profile'
-      fullPath: '/dashboard/profile'
-      preLoaderRoute: typeof DashboardProfileLazyImport
-      parentRoute: typeof DashboardImport
-    }
-    '/dashboard/translations': {
-      id: '/dashboard/translations'
-      path: '/translations'
-      fullPath: '/dashboard/translations'
-      preLoaderRoute: typeof DashboardTranslationsLazyImport
-      parentRoute: typeof DashboardImport
-    }
-    '/dashboard/': {
-      id: '/dashboard/'
-      path: '/'
-      fullPath: '/dashboard/'
-      preLoaderRoute: typeof DashboardIndexLazyImport
-      parentRoute: typeof DashboardImport
-    }
-    '/dashboard/chat/analyze-scripts': {
-      id: '/dashboard/chat/analyze-scripts'
-      path: '/analyze-scripts'
-      fullPath: '/dashboard/chat/analyze-scripts'
-      preLoaderRoute: typeof DashboardChatAnalyzeScriptsLazyImport
-      parentRoute: typeof DashboardChatLazyImport
-    }
-    '/dashboard/chat/designer': {
-      id: '/dashboard/chat/designer'
-      path: '/designer'
-      fullPath: '/dashboard/chat/designer'
-      preLoaderRoute: typeof DashboardChatDesignerLazyImport
-      parentRoute: typeof DashboardChatLazyImport
-    }
-    '/dashboard/checklists/create': {
-      id: '/dashboard/checklists/create'
-      path: '/checklists/create'
-      fullPath: '/dashboard/checklists/create'
-      preLoaderRoute: typeof DashboardChecklistsCreateLazyImport
-      parentRoute: typeof DashboardImport
-    }
-    '/dashboard/demands/create': {
-      id: '/dashboard/demands/create'
-      path: '/demands/create'
-      fullPath: '/dashboard/demands/create'
-      preLoaderRoute: typeof DashboardDemandsCreateLazyImport
-      parentRoute: typeof DashboardImport
-    }
-    '/dashboard/documents/create': {
-      id: '/dashboard/documents/create'
-      path: '/documents/create'
-      fullPath: '/dashboard/documents/create'
-      preLoaderRoute: typeof DashboardDocumentsCreateLazyImport
-      parentRoute: typeof DashboardImport
-    }
-    '/dashboard/institutions/create': {
-      id: '/dashboard/institutions/create'
-      path: '/institutions/create'
-      fullPath: '/dashboard/institutions/create'
-      preLoaderRoute: typeof DashboardInstitutionsCreateLazyImport
-      parentRoute: typeof DashboardImport
-    }
-    '/dashboard/issues/create': {
-      id: '/dashboard/issues/create'
-      path: '/issues/create'
-      fullPath: '/dashboard/issues/create'
-      preLoaderRoute: typeof DashboardIssuesCreateLazyImport
-      parentRoute: typeof DashboardImport
-    }
-    '/dashboard/locales/create': {
-      id: '/dashboard/locales/create'
-      path: '/locales/create'
-      fullPath: '/dashboard/locales/create'
-      preLoaderRoute: typeof DashboardLocalesCreateLazyImport
-      parentRoute: typeof DashboardImport
-    }
-    '/dashboard/releases/create': {
-      id: '/dashboard/releases/create'
-      path: '/releases/create'
-      fullPath: '/dashboard/releases/create'
-      preLoaderRoute: typeof DashboardReleasesCreateLazyImport
-      parentRoute: typeof DashboardImport
-    }
-    '/dashboard/users/create': {
-      id: '/dashboard/users/create'
-      path: '/users/create'
-      fullPath: '/dashboard/users/create'
-      preLoaderRoute: typeof DashboardUsersCreateLazyImport
-      parentRoute: typeof DashboardImport
-    }
-    '/dashboard/wiki/archived': {
-      id: '/dashboard/wiki/archived'
-      path: '/wiki/archived'
-      fullPath: '/dashboard/wiki/archived'
-      preLoaderRoute: typeof DashboardWikiArchivedLazyImport
-      parentRoute: typeof DashboardImport
-    }
-    '/dashboard/wiki/create': {
-      id: '/dashboard/wiki/create'
-      path: '/wiki/create'
-      fullPath: '/dashboard/wiki/create'
-      preLoaderRoute: typeof DashboardWikiCreateLazyImport
-      parentRoute: typeof DashboardImport
-    }
-    '/dashboard/calendar/': {
-      id: '/dashboard/calendar/'
-      path: '/calendar'
-      fullPath: '/dashboard/calendar'
-      preLoaderRoute: typeof DashboardCalendarIndexImport
-      parentRoute: typeof DashboardImport
-    }
-    '/dashboard/checklists/': {
-      id: '/dashboard/checklists/'
-      path: '/checklists'
-      fullPath: '/dashboard/checklists'
-      preLoaderRoute: typeof DashboardChecklistsIndexImport
-      parentRoute: typeof DashboardImport
-    }
-    '/dashboard/demands/': {
-      id: '/dashboard/demands/'
-      path: '/demands'
-      fullPath: '/dashboard/demands'
-      preLoaderRoute: typeof DashboardDemandsIndexImport
-      parentRoute: typeof DashboardImport
-    }
-    '/dashboard/documents/': {
-      id: '/dashboard/documents/'
-      path: '/documents'
-      fullPath: '/dashboard/documents'
-      preLoaderRoute: typeof DashboardDocumentsIndexImport
-      parentRoute: typeof DashboardImport
-    }
-    '/dashboard/institutions/': {
-      id: '/dashboard/institutions/'
-      path: '/institutions'
-      fullPath: '/dashboard/institutions'
-      preLoaderRoute: typeof DashboardInstitutionsIndexImport
-      parentRoute: typeof DashboardImport
-    }
-    '/dashboard/issues/': {
-      id: '/dashboard/issues/'
-      path: '/issues'
-      fullPath: '/dashboard/issues'
-      preLoaderRoute: typeof DashboardIssuesIndexImport
-      parentRoute: typeof DashboardImport
-    }
-    '/dashboard/labs/': {
-      id: '/dashboard/labs/'
-      path: '/labs'
-      fullPath: '/dashboard/labs'
-      preLoaderRoute: typeof DashboardLabsIndexImport
-      parentRoute: typeof DashboardImport
-    }
-    '/dashboard/locales/': {
-      id: '/dashboard/locales/'
-      path: '/locales'
-      fullPath: '/dashboard/locales'
-      preLoaderRoute: typeof DashboardLocalesIndexImport
-      parentRoute: typeof DashboardImport
-    }
-    '/dashboard/releases/': {
-      id: '/dashboard/releases/'
-      path: '/releases'
-      fullPath: '/dashboard/releases'
-      preLoaderRoute: typeof DashboardReleasesIndexImport
-      parentRoute: typeof DashboardImport
-    }
-    '/dashboard/users/': {
-      id: '/dashboard/users/'
-      path: '/users'
-      fullPath: '/dashboard/users'
-      preLoaderRoute: typeof DashboardUsersIndexImport
-      parentRoute: typeof DashboardImport
-    }
-    '/dashboard/chat/': {
-      id: '/dashboard/chat/'
-      path: '/'
-      fullPath: '/dashboard/chat/'
-      preLoaderRoute: typeof DashboardChatIndexLazyImport
-      parentRoute: typeof DashboardChatLazyImport
-    }
-    '/dashboard/wiki/': {
-      id: '/dashboard/wiki/'
-      path: '/wiki'
-      fullPath: '/dashboard/wiki'
-      preLoaderRoute: typeof DashboardWikiIndexLazyImport
-      parentRoute: typeof DashboardImport
-    }
-    '/dashboard/labs/show/$id': {
-      id: '/dashboard/labs/show/$id'
-      path: '/labs/show/$id'
-      fullPath: '/dashboard/labs/show/$id'
-      preLoaderRoute: typeof DashboardLabsShowIdImport
-      parentRoute: typeof DashboardImport
-    }
-    '/dashboard/locales/edit/$id': {
-      id: '/dashboard/locales/edit/$id'
-      path: '/locales/edit/$id'
-      fullPath: '/dashboard/locales/edit/$id'
-      preLoaderRoute: typeof DashboardLocalesEditIdImport
-      parentRoute: typeof DashboardImport
-    }
-    '/dashboard/locales/show/$id': {
-      id: '/dashboard/locales/show/$id'
-      path: '/locales/show/$id'
-      fullPath: '/dashboard/locales/show/$id'
-      preLoaderRoute: typeof DashboardLocalesShowIdImport
-      parentRoute: typeof DashboardImport
-    }
-    '/dashboard/checklists/edit/$id': {
-      id: '/dashboard/checklists/edit/$id'
-      path: '/checklists/edit/$id'
-      fullPath: '/dashboard/checklists/edit/$id'
-      preLoaderRoute: typeof DashboardChecklistsEditIdLazyImport
-      parentRoute: typeof DashboardImport
-    }
-    '/dashboard/checklists/show/$id': {
-      id: '/dashboard/checklists/show/$id'
-      path: '/checklists/show/$id'
-      fullPath: '/dashboard/checklists/show/$id'
-      preLoaderRoute: typeof DashboardChecklistsShowIdLazyImport
-      parentRoute: typeof DashboardImport
-    }
-    '/dashboard/demands/edit/$id': {
-      id: '/dashboard/demands/edit/$id'
-      path: '/demands/edit/$id'
-      fullPath: '/dashboard/demands/edit/$id'
-      preLoaderRoute: typeof DashboardDemandsEditIdLazyImport
-      parentRoute: typeof DashboardImport
-    }
-    '/dashboard/demands/show/$id': {
-      id: '/dashboard/demands/show/$id'
-      path: '/demands/show/$id'
-      fullPath: '/dashboard/demands/show/$id'
-      preLoaderRoute: typeof DashboardDemandsShowIdLazyImport
-      parentRoute: typeof DashboardImport
-    }
-    '/dashboard/documents/edit/$id': {
-      id: '/dashboard/documents/edit/$id'
-      path: '/documents/edit/$id'
-      fullPath: '/dashboard/documents/edit/$id'
-      preLoaderRoute: typeof DashboardDocumentsEditIdLazyImport
-      parentRoute: typeof DashboardImport
-    }
-    '/dashboard/documents/show/$id': {
-      id: '/dashboard/documents/show/$id'
-      path: '/documents/show/$id'
-      fullPath: '/dashboard/documents/show/$id'
-      preLoaderRoute: typeof DashboardDocumentsShowIdLazyImport
-      parentRoute: typeof DashboardImport
-    }
-    '/dashboard/institutions/edit/$id': {
-      id: '/dashboard/institutions/edit/$id'
-      path: '/institutions/edit/$id'
-      fullPath: '/dashboard/institutions/edit/$id'
-      preLoaderRoute: typeof DashboardInstitutionsEditIdLazyImport
-      parentRoute: typeof DashboardImport
-    }
-    '/dashboard/institutions/show/$id': {
-      id: '/dashboard/institutions/show/$id'
-      path: '/institutions/show/$id'
-      fullPath: '/dashboard/institutions/show/$id'
-      preLoaderRoute: typeof DashboardInstitutionsShowIdLazyImport
-      parentRoute: typeof DashboardImport
-    }
-    '/dashboard/issues/edit/$id': {
-      id: '/dashboard/issues/edit/$id'
-      path: '/issues/edit/$id'
-      fullPath: '/dashboard/issues/edit/$id'
-      preLoaderRoute: typeof DashboardIssuesEditIdLazyImport
-      parentRoute: typeof DashboardImport
-    }
-    '/dashboard/issues/show/$id': {
-      id: '/dashboard/issues/show/$id'
-      path: '/issues/show/$id'
-      fullPath: '/dashboard/issues/show/$id'
-      preLoaderRoute: typeof DashboardIssuesShowIdLazyImport
-      parentRoute: typeof DashboardImport
-    }
-    '/dashboard/locales/mass-edit/$id': {
-      id: '/dashboard/locales/mass-edit/$id'
-      path: '/locales/mass-edit/$id'
-      fullPath: '/dashboard/locales/mass-edit/$id'
-      preLoaderRoute: typeof DashboardLocalesMassEditIdLazyImport
-      parentRoute: typeof DashboardImport
-    }
-    '/dashboard/releases/edit/$id': {
-      id: '/dashboard/releases/edit/$id'
-      path: '/releases/edit/$id'
-      fullPath: '/dashboard/releases/edit/$id'
-      preLoaderRoute: typeof DashboardReleasesEditIdLazyImport
-      parentRoute: typeof DashboardImport
-    }
-    '/dashboard/releases/show/$id': {
-      id: '/dashboard/releases/show/$id'
-      path: '/releases/show/$id'
-      fullPath: '/dashboard/releases/show/$id'
-      preLoaderRoute: typeof DashboardReleasesShowIdLazyImport
-      parentRoute: typeof DashboardImport
-    }
-    '/dashboard/users/edit/$id': {
-      id: '/dashboard/users/edit/$id'
-      path: '/users/edit/$id'
-      fullPath: '/dashboard/users/edit/$id'
-      preLoaderRoute: typeof DashboardUsersEditIdLazyImport
-      parentRoute: typeof DashboardImport
-    }
-    '/dashboard/users/show/$id': {
-      id: '/dashboard/users/show/$id'
-      path: '/users/show/$id'
-      fullPath: '/dashboard/users/show/$id'
-      preLoaderRoute: typeof DashboardUsersShowIdLazyImport
-      parentRoute: typeof DashboardImport
-    }
-    '/dashboard/wiki/edit/$id': {
-      id: '/dashboard/wiki/edit/$id'
-      path: '/wiki/edit/$id'
-      fullPath: '/dashboard/wiki/edit/$id'
-      preLoaderRoute: typeof DashboardWikiEditIdLazyImport
-      parentRoute: typeof DashboardImport
-    }
-    '/dashboard/wiki/show/$id': {
-      id: '/dashboard/wiki/show/$id'
-      path: '/wiki/show/$id'
-      fullPath: '/dashboard/wiki/show/$id'
-      preLoaderRoute: typeof DashboardWikiShowIdLazyImport
-      parentRoute: typeof DashboardImport
-    }
-    '/dashboard/curriculums/objects/': {
-      id: '/dashboard/curriculums/objects/'
-      path: '/curriculums/objects'
-      fullPath: '/dashboard/curriculums/objects'
-      preLoaderRoute: typeof DashboardCurriculumsObjectsIndexImport
-      parentRoute: typeof DashboardImport
-    }
-    '/dashboard/curriculums/skills/': {
-      id: '/dashboard/curriculums/skills/'
-      path: '/curriculums/skills'
-      fullPath: '/dashboard/curriculums/skills'
-      preLoaderRoute: typeof DashboardCurriculumsSkillsIndexImport
-      parentRoute: typeof DashboardImport
-    }
-    '/dashboard/curriculums/practices/': {
-      id: '/dashboard/curriculums/practices/'
-      path: '/curriculums/practices'
-      fullPath: '/dashboard/curriculums/practices'
-      preLoaderRoute: typeof DashboardCurriculumsPracticesIndexLazyImport
-      parentRoute: typeof DashboardImport
-    }
-    '/dashboard/curriculums/practices/edit/$id': {
-      id: '/dashboard/curriculums/practices/edit/$id'
-      path: '/curriculums/practices/edit/$id'
-      fullPath: '/dashboard/curriculums/practices/edit/$id'
-      preLoaderRoute: typeof DashboardCurriculumsPracticesEditIdLazyImport
-      parentRoute: typeof DashboardImport
-    }
-    '/dashboard/curriculums/practices/show/$id': {
-      id: '/dashboard/curriculums/practices/show/$id'
-      path: '/curriculums/practices/show/$id'
-      fullPath: '/dashboard/curriculums/practices/show/$id'
-      preLoaderRoute: typeof DashboardCurriculumsPracticesShowIdLazyImport
-      parentRoute: typeof DashboardImport
-    }
-    '/dashboard/curriculums/skills/edit/$id': {
-      id: '/dashboard/curriculums/skills/edit/$id'
-      path: '/curriculums/skills/edit/$id'
-      fullPath: '/dashboard/curriculums/skills/edit/$id'
-      preLoaderRoute: typeof DashboardCurriculumsSkillsEditIdLazyImport
-      parentRoute: typeof DashboardImport
-    }
-    '/dashboard/curriculums/skills/show/$id': {
-      id: '/dashboard/curriculums/skills/show/$id'
-      path: '/curriculums/skills/show/$id'
-      fullPath: '/dashboard/curriculums/skills/show/$id'
-      preLoaderRoute: typeof DashboardCurriculumsSkillsShowIdLazyImport
-      parentRoute: typeof DashboardImport
-    }
-  }
-}
-
-// Create and export the route tree
-
-interface DashboardChatLazyRouteChildren {
-  DashboardChatAnalyzeScriptsLazyRoute: typeof DashboardChatAnalyzeScriptsLazyRoute
-  DashboardChatDesignerLazyRoute: typeof DashboardChatDesignerLazyRoute
-  DashboardChatIndexLazyRoute: typeof DashboardChatIndexLazyRoute
-}
-
-const DashboardChatLazyRouteChildren: DashboardChatLazyRouteChildren = {
-  DashboardChatAnalyzeScriptsLazyRoute: DashboardChatAnalyzeScriptsLazyRoute,
-  DashboardChatDesignerLazyRoute: DashboardChatDesignerLazyRoute,
-  DashboardChatIndexLazyRoute: DashboardChatIndexLazyRoute,
-}
-
-const DashboardChatLazyRouteWithChildren =
-  DashboardChatLazyRoute._addFileChildren(DashboardChatLazyRouteChildren)
-
-interface DashboardRouteChildren {
-  DashboardChatLazyRoute: typeof DashboardChatLazyRouteWithChildren
-  DashboardNewsLazyRoute: typeof DashboardNewsLazyRoute
-  DashboardPermissionsLazyRoute: typeof DashboardPermissionsLazyRoute
-  DashboardProfileLazyRoute: typeof DashboardProfileLazyRoute
-  DashboardTranslationsLazyRoute: typeof DashboardTranslationsLazyRoute
-  DashboardIndexLazyRoute: typeof DashboardIndexLazyRoute
-  DashboardChecklistsCreateLazyRoute: typeof DashboardChecklistsCreateLazyRoute
-  DashboardDemandsCreateLazyRoute: typeof DashboardDemandsCreateLazyRoute
-  DashboardDocumentsCreateLazyRoute: typeof DashboardDocumentsCreateLazyRoute
-  DashboardInstitutionsCreateLazyRoute: typeof DashboardInstitutionsCreateLazyRoute
-  DashboardIssuesCreateLazyRoute: typeof DashboardIssuesCreateLazyRoute
-  DashboardLocalesCreateLazyRoute: typeof DashboardLocalesCreateLazyRoute
-  DashboardReleasesCreateLazyRoute: typeof DashboardReleasesCreateLazyRoute
-  DashboardUsersCreateLazyRoute: typeof DashboardUsersCreateLazyRoute
-  DashboardWikiArchivedLazyRoute: typeof DashboardWikiArchivedLazyRoute
-  DashboardWikiCreateLazyRoute: typeof DashboardWikiCreateLazyRoute
-  DashboardCalendarIndexRoute: typeof DashboardCalendarIndexRoute
-  DashboardChecklistsIndexRoute: typeof DashboardChecklistsIndexRoute
-  DashboardDemandsIndexRoute: typeof DashboardDemandsIndexRoute
-  DashboardDocumentsIndexRoute: typeof DashboardDocumentsIndexRoute
-  DashboardInstitutionsIndexRoute: typeof DashboardInstitutionsIndexRoute
-  DashboardIssuesIndexRoute: typeof DashboardIssuesIndexRoute
-  DashboardLabsIndexRoute: typeof DashboardLabsIndexRoute
-  DashboardLocalesIndexRoute: typeof DashboardLocalesIndexRoute
-  DashboardReleasesIndexRoute: typeof DashboardReleasesIndexRoute
-  DashboardUsersIndexRoute: typeof DashboardUsersIndexRoute
-  DashboardWikiIndexLazyRoute: typeof DashboardWikiIndexLazyRoute
-  DashboardLabsShowIdRoute: typeof DashboardLabsShowIdRoute
-  DashboardLocalesEditIdRoute: typeof DashboardLocalesEditIdRoute
-  DashboardLocalesShowIdRoute: typeof DashboardLocalesShowIdRoute
-  DashboardChecklistsEditIdLazyRoute: typeof DashboardChecklistsEditIdLazyRoute
-  DashboardChecklistsShowIdLazyRoute: typeof DashboardChecklistsShowIdLazyRoute
-  DashboardDemandsEditIdLazyRoute: typeof DashboardDemandsEditIdLazyRoute
-  DashboardDemandsShowIdLazyRoute: typeof DashboardDemandsShowIdLazyRoute
-  DashboardDocumentsEditIdLazyRoute: typeof DashboardDocumentsEditIdLazyRoute
-  DashboardDocumentsShowIdLazyRoute: typeof DashboardDocumentsShowIdLazyRoute
-  DashboardInstitutionsEditIdLazyRoute: typeof DashboardInstitutionsEditIdLazyRoute
-  DashboardInstitutionsShowIdLazyRoute: typeof DashboardInstitutionsShowIdLazyRoute
-  DashboardIssuesEditIdLazyRoute: typeof DashboardIssuesEditIdLazyRoute
-  DashboardIssuesShowIdLazyRoute: typeof DashboardIssuesShowIdLazyRoute
-  DashboardLocalesMassEditIdLazyRoute: typeof DashboardLocalesMassEditIdLazyRoute
-  DashboardReleasesEditIdLazyRoute: typeof DashboardReleasesEditIdLazyRoute
-  DashboardReleasesShowIdLazyRoute: typeof DashboardReleasesShowIdLazyRoute
-  DashboardUsersEditIdLazyRoute: typeof DashboardUsersEditIdLazyRoute
-  DashboardUsersShowIdLazyRoute: typeof DashboardUsersShowIdLazyRoute
-  DashboardWikiEditIdLazyRoute: typeof DashboardWikiEditIdLazyRoute
-  DashboardWikiShowIdLazyRoute: typeof DashboardWikiShowIdLazyRoute
-  DashboardCurriculumsObjectsIndexRoute: typeof DashboardCurriculumsObjectsIndexRoute
-  DashboardCurriculumsSkillsIndexRoute: typeof DashboardCurriculumsSkillsIndexRoute
-  DashboardCurriculumsPracticesIndexLazyRoute: typeof DashboardCurriculumsPracticesIndexLazyRoute
-  DashboardCurriculumsPracticesEditIdLazyRoute: typeof DashboardCurriculumsPracticesEditIdLazyRoute
-  DashboardCurriculumsPracticesShowIdLazyRoute: typeof DashboardCurriculumsPracticesShowIdLazyRoute
-  DashboardCurriculumsSkillsEditIdLazyRoute: typeof DashboardCurriculumsSkillsEditIdLazyRoute
-  DashboardCurriculumsSkillsShowIdLazyRoute: typeof DashboardCurriculumsSkillsShowIdLazyRoute
-}
-
-const DashboardRouteChildren: DashboardRouteChildren = {
-  DashboardChatLazyRoute: DashboardChatLazyRouteWithChildren,
-  DashboardNewsLazyRoute: DashboardNewsLazyRoute,
-  DashboardPermissionsLazyRoute: DashboardPermissionsLazyRoute,
-  DashboardProfileLazyRoute: DashboardProfileLazyRoute,
-  DashboardTranslationsLazyRoute: DashboardTranslationsLazyRoute,
-  DashboardIndexLazyRoute: DashboardIndexLazyRoute,
-  DashboardChecklistsCreateLazyRoute: DashboardChecklistsCreateLazyRoute,
-  DashboardDemandsCreateLazyRoute: DashboardDemandsCreateLazyRoute,
-  DashboardDocumentsCreateLazyRoute: DashboardDocumentsCreateLazyRoute,
-  DashboardInstitutionsCreateLazyRoute: DashboardInstitutionsCreateLazyRoute,
-  DashboardIssuesCreateLazyRoute: DashboardIssuesCreateLazyRoute,
-  DashboardLocalesCreateLazyRoute: DashboardLocalesCreateLazyRoute,
-  DashboardReleasesCreateLazyRoute: DashboardReleasesCreateLazyRoute,
-  DashboardUsersCreateLazyRoute: DashboardUsersCreateLazyRoute,
-  DashboardWikiArchivedLazyRoute: DashboardWikiArchivedLazyRoute,
-  DashboardWikiCreateLazyRoute: DashboardWikiCreateLazyRoute,
-  DashboardCalendarIndexRoute: DashboardCalendarIndexRoute,
-  DashboardChecklistsIndexRoute: DashboardChecklistsIndexRoute,
-  DashboardDemandsIndexRoute: DashboardDemandsIndexRoute,
-  DashboardDocumentsIndexRoute: DashboardDocumentsIndexRoute,
-  DashboardInstitutionsIndexRoute: DashboardInstitutionsIndexRoute,
-  DashboardIssuesIndexRoute: DashboardIssuesIndexRoute,
-  DashboardLabsIndexRoute: DashboardLabsIndexRoute,
-  DashboardLocalesIndexRoute: DashboardLocalesIndexRoute,
-  DashboardReleasesIndexRoute: DashboardReleasesIndexRoute,
-  DashboardUsersIndexRoute: DashboardUsersIndexRoute,
-  DashboardWikiIndexLazyRoute: DashboardWikiIndexLazyRoute,
-  DashboardLabsShowIdRoute: DashboardLabsShowIdRoute,
-  DashboardLocalesEditIdRoute: DashboardLocalesEditIdRoute,
-  DashboardLocalesShowIdRoute: DashboardLocalesShowIdRoute,
-  DashboardChecklistsEditIdLazyRoute: DashboardChecklistsEditIdLazyRoute,
-  DashboardChecklistsShowIdLazyRoute: DashboardChecklistsShowIdLazyRoute,
-  DashboardDemandsEditIdLazyRoute: DashboardDemandsEditIdLazyRoute,
-  DashboardDemandsShowIdLazyRoute: DashboardDemandsShowIdLazyRoute,
-  DashboardDocumentsEditIdLazyRoute: DashboardDocumentsEditIdLazyRoute,
-  DashboardDocumentsShowIdLazyRoute: DashboardDocumentsShowIdLazyRoute,
-  DashboardInstitutionsEditIdLazyRoute: DashboardInstitutionsEditIdLazyRoute,
-  DashboardInstitutionsShowIdLazyRoute: DashboardInstitutionsShowIdLazyRoute,
-  DashboardIssuesEditIdLazyRoute: DashboardIssuesEditIdLazyRoute,
-  DashboardIssuesShowIdLazyRoute: DashboardIssuesShowIdLazyRoute,
-  DashboardLocalesMassEditIdLazyRoute: DashboardLocalesMassEditIdLazyRoute,
-  DashboardReleasesEditIdLazyRoute: DashboardReleasesEditIdLazyRoute,
-  DashboardReleasesShowIdLazyRoute: DashboardReleasesShowIdLazyRoute,
-  DashboardUsersEditIdLazyRoute: DashboardUsersEditIdLazyRoute,
-  DashboardUsersShowIdLazyRoute: DashboardUsersShowIdLazyRoute,
-  DashboardWikiEditIdLazyRoute: DashboardWikiEditIdLazyRoute,
-  DashboardWikiShowIdLazyRoute: DashboardWikiShowIdLazyRoute,
-  DashboardCurriculumsObjectsIndexRoute: DashboardCurriculumsObjectsIndexRoute,
-  DashboardCurriculumsSkillsIndexRoute: DashboardCurriculumsSkillsIndexRoute,
-  DashboardCurriculumsPracticesIndexLazyRoute:
-    DashboardCurriculumsPracticesIndexLazyRoute,
-  DashboardCurriculumsPracticesEditIdLazyRoute:
-    DashboardCurriculumsPracticesEditIdLazyRoute,
-  DashboardCurriculumsPracticesShowIdLazyRoute:
-    DashboardCurriculumsPracticesShowIdLazyRoute,
-  DashboardCurriculumsSkillsEditIdLazyRoute:
-    DashboardCurriculumsSkillsEditIdLazyRoute,
-  DashboardCurriculumsSkillsShowIdLazyRoute:
-    DashboardCurriculumsSkillsShowIdLazyRoute,
-}
-
-const DashboardRouteWithChildren = DashboardRoute._addFileChildren(
-  DashboardRouteChildren,
-)
+  getParentRoute: () => PublicRoute,
+} as any)
+const PublicSignupRoute = PublicSignupRouteImport.update({
+  id: '/signup',
+  path: '/signup',
+  getParentRoute: () => PublicRoute,
+} as any)
+const PublicRecoverRoute = PublicRecoverRouteImport.update({
+  id: '/recover',
+  path: '/recover',
+  getParentRoute: () => PublicRoute,
+} as any)
+const AuthenticatedCatalogRoute = AuthenticatedCatalogRouteImport.update({
+  id: '/catalog',
+  path: '/catalog',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
+const AuthenticatedCatalogIndexRoute =
+  AuthenticatedCatalogIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => AuthenticatedCatalogRoute,
+  } as any)
+const AuthenticatedCatalogDashboardRoute =
+  AuthenticatedCatalogDashboardRouteImport.update({
+    id: '/dashboard',
+    path: '/dashboard',
+    getParentRoute: () => AuthenticatedCatalogRoute,
+  } as any)
+const AuthenticatedCatalogCategorySlugRoute =
+  AuthenticatedCatalogCategorySlugRouteImport.update({
+    id: '/$categorySlug',
+    path: '/$categorySlug',
+    getParentRoute: () => AuthenticatedCatalogRoute,
+  } as any)
+const AuthenticatedCatalogCategorySlugSubcategorySlugRoute =
+  AuthenticatedCatalogCategorySlugSubcategorySlugRouteImport.update({
+    id: '/$subcategorySlug',
+    path: '/$subcategorySlug',
+    getParentRoute: () => AuthenticatedCatalogCategorySlugRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexLazyRoute
-  '/dashboard': typeof DashboardRouteWithChildren
-  '/login': typeof LoginRoute
-  '/dashboard/chat': typeof DashboardChatLazyRouteWithChildren
-  '/dashboard/news': typeof DashboardNewsLazyRoute
-  '/dashboard/permissions': typeof DashboardPermissionsLazyRoute
-  '/dashboard/profile': typeof DashboardProfileLazyRoute
-  '/dashboard/translations': typeof DashboardTranslationsLazyRoute
-  '/dashboard/': typeof DashboardIndexLazyRoute
-  '/dashboard/chat/analyze-scripts': typeof DashboardChatAnalyzeScriptsLazyRoute
-  '/dashboard/chat/designer': typeof DashboardChatDesignerLazyRoute
-  '/dashboard/checklists/create': typeof DashboardChecklistsCreateLazyRoute
-  '/dashboard/demands/create': typeof DashboardDemandsCreateLazyRoute
-  '/dashboard/documents/create': typeof DashboardDocumentsCreateLazyRoute
-  '/dashboard/institutions/create': typeof DashboardInstitutionsCreateLazyRoute
-  '/dashboard/issues/create': typeof DashboardIssuesCreateLazyRoute
-  '/dashboard/locales/create': typeof DashboardLocalesCreateLazyRoute
-  '/dashboard/releases/create': typeof DashboardReleasesCreateLazyRoute
-  '/dashboard/users/create': typeof DashboardUsersCreateLazyRoute
-  '/dashboard/wiki/archived': typeof DashboardWikiArchivedLazyRoute
-  '/dashboard/wiki/create': typeof DashboardWikiCreateLazyRoute
-  '/dashboard/calendar': typeof DashboardCalendarIndexRoute
-  '/dashboard/checklists': typeof DashboardChecklistsIndexRoute
-  '/dashboard/demands': typeof DashboardDemandsIndexRoute
-  '/dashboard/documents': typeof DashboardDocumentsIndexRoute
-  '/dashboard/institutions': typeof DashboardInstitutionsIndexRoute
-  '/dashboard/issues': typeof DashboardIssuesIndexRoute
-  '/dashboard/labs': typeof DashboardLabsIndexRoute
-  '/dashboard/locales': typeof DashboardLocalesIndexRoute
-  '/dashboard/releases': typeof DashboardReleasesIndexRoute
-  '/dashboard/users': typeof DashboardUsersIndexRoute
-  '/dashboard/chat/': typeof DashboardChatIndexLazyRoute
-  '/dashboard/wiki': typeof DashboardWikiIndexLazyRoute
-  '/dashboard/labs/show/$id': typeof DashboardLabsShowIdRoute
-  '/dashboard/locales/edit/$id': typeof DashboardLocalesEditIdRoute
-  '/dashboard/locales/show/$id': typeof DashboardLocalesShowIdRoute
-  '/dashboard/checklists/edit/$id': typeof DashboardChecklistsEditIdLazyRoute
-  '/dashboard/checklists/show/$id': typeof DashboardChecklistsShowIdLazyRoute
-  '/dashboard/demands/edit/$id': typeof DashboardDemandsEditIdLazyRoute
-  '/dashboard/demands/show/$id': typeof DashboardDemandsShowIdLazyRoute
-  '/dashboard/documents/edit/$id': typeof DashboardDocumentsEditIdLazyRoute
-  '/dashboard/documents/show/$id': typeof DashboardDocumentsShowIdLazyRoute
-  '/dashboard/institutions/edit/$id': typeof DashboardInstitutionsEditIdLazyRoute
-  '/dashboard/institutions/show/$id': typeof DashboardInstitutionsShowIdLazyRoute
-  '/dashboard/issues/edit/$id': typeof DashboardIssuesEditIdLazyRoute
-  '/dashboard/issues/show/$id': typeof DashboardIssuesShowIdLazyRoute
-  '/dashboard/locales/mass-edit/$id': typeof DashboardLocalesMassEditIdLazyRoute
-  '/dashboard/releases/edit/$id': typeof DashboardReleasesEditIdLazyRoute
-  '/dashboard/releases/show/$id': typeof DashboardReleasesShowIdLazyRoute
-  '/dashboard/users/edit/$id': typeof DashboardUsersEditIdLazyRoute
-  '/dashboard/users/show/$id': typeof DashboardUsersShowIdLazyRoute
-  '/dashboard/wiki/edit/$id': typeof DashboardWikiEditIdLazyRoute
-  '/dashboard/wiki/show/$id': typeof DashboardWikiShowIdLazyRoute
-  '/dashboard/curriculums/objects': typeof DashboardCurriculumsObjectsIndexRoute
-  '/dashboard/curriculums/skills': typeof DashboardCurriculumsSkillsIndexRoute
-  '/dashboard/curriculums/practices': typeof DashboardCurriculumsPracticesIndexLazyRoute
-  '/dashboard/curriculums/practices/edit/$id': typeof DashboardCurriculumsPracticesEditIdLazyRoute
-  '/dashboard/curriculums/practices/show/$id': typeof DashboardCurriculumsPracticesShowIdLazyRoute
-  '/dashboard/curriculums/skills/edit/$id': typeof DashboardCurriculumsSkillsEditIdLazyRoute
-  '/dashboard/curriculums/skills/show/$id': typeof DashboardCurriculumsSkillsShowIdLazyRoute
+  '/catalog': typeof AuthenticatedCatalogRouteWithChildren
+  '/recover': typeof PublicRecoverRoute
+  '/signup': typeof PublicSignupRoute
+  '/': typeof PublicIndexRoute
+  '/catalog/$categorySlug': typeof AuthenticatedCatalogCategorySlugRouteWithChildren
+  '/catalog/dashboard': typeof AuthenticatedCatalogDashboardRoute
+  '/catalog/': typeof AuthenticatedCatalogIndexRoute
+  '/catalog/$categorySlug/$subcategorySlug': typeof AuthenticatedCatalogCategorySlugSubcategorySlugRoute
 }
-
 export interface FileRoutesByTo {
-  '/': typeof IndexLazyRoute
-  '/login': typeof LoginRoute
-  '/dashboard/news': typeof DashboardNewsLazyRoute
-  '/dashboard/permissions': typeof DashboardPermissionsLazyRoute
-  '/dashboard/profile': typeof DashboardProfileLazyRoute
-  '/dashboard/translations': typeof DashboardTranslationsLazyRoute
-  '/dashboard': typeof DashboardIndexLazyRoute
-  '/dashboard/chat/analyze-scripts': typeof DashboardChatAnalyzeScriptsLazyRoute
-  '/dashboard/chat/designer': typeof DashboardChatDesignerLazyRoute
-  '/dashboard/checklists/create': typeof DashboardChecklistsCreateLazyRoute
-  '/dashboard/demands/create': typeof DashboardDemandsCreateLazyRoute
-  '/dashboard/documents/create': typeof DashboardDocumentsCreateLazyRoute
-  '/dashboard/institutions/create': typeof DashboardInstitutionsCreateLazyRoute
-  '/dashboard/issues/create': typeof DashboardIssuesCreateLazyRoute
-  '/dashboard/locales/create': typeof DashboardLocalesCreateLazyRoute
-  '/dashboard/releases/create': typeof DashboardReleasesCreateLazyRoute
-  '/dashboard/users/create': typeof DashboardUsersCreateLazyRoute
-  '/dashboard/wiki/archived': typeof DashboardWikiArchivedLazyRoute
-  '/dashboard/wiki/create': typeof DashboardWikiCreateLazyRoute
-  '/dashboard/calendar': typeof DashboardCalendarIndexRoute
-  '/dashboard/checklists': typeof DashboardChecklistsIndexRoute
-  '/dashboard/demands': typeof DashboardDemandsIndexRoute
-  '/dashboard/documents': typeof DashboardDocumentsIndexRoute
-  '/dashboard/institutions': typeof DashboardInstitutionsIndexRoute
-  '/dashboard/issues': typeof DashboardIssuesIndexRoute
-  '/dashboard/labs': typeof DashboardLabsIndexRoute
-  '/dashboard/locales': typeof DashboardLocalesIndexRoute
-  '/dashboard/releases': typeof DashboardReleasesIndexRoute
-  '/dashboard/users': typeof DashboardUsersIndexRoute
-  '/dashboard/chat': typeof DashboardChatIndexLazyRoute
-  '/dashboard/wiki': typeof DashboardWikiIndexLazyRoute
-  '/dashboard/labs/show/$id': typeof DashboardLabsShowIdRoute
-  '/dashboard/locales/edit/$id': typeof DashboardLocalesEditIdRoute
-  '/dashboard/locales/show/$id': typeof DashboardLocalesShowIdRoute
-  '/dashboard/checklists/edit/$id': typeof DashboardChecklistsEditIdLazyRoute
-  '/dashboard/checklists/show/$id': typeof DashboardChecklistsShowIdLazyRoute
-  '/dashboard/demands/edit/$id': typeof DashboardDemandsEditIdLazyRoute
-  '/dashboard/demands/show/$id': typeof DashboardDemandsShowIdLazyRoute
-  '/dashboard/documents/edit/$id': typeof DashboardDocumentsEditIdLazyRoute
-  '/dashboard/documents/show/$id': typeof DashboardDocumentsShowIdLazyRoute
-  '/dashboard/institutions/edit/$id': typeof DashboardInstitutionsEditIdLazyRoute
-  '/dashboard/institutions/show/$id': typeof DashboardInstitutionsShowIdLazyRoute
-  '/dashboard/issues/edit/$id': typeof DashboardIssuesEditIdLazyRoute
-  '/dashboard/issues/show/$id': typeof DashboardIssuesShowIdLazyRoute
-  '/dashboard/locales/mass-edit/$id': typeof DashboardLocalesMassEditIdLazyRoute
-  '/dashboard/releases/edit/$id': typeof DashboardReleasesEditIdLazyRoute
-  '/dashboard/releases/show/$id': typeof DashboardReleasesShowIdLazyRoute
-  '/dashboard/users/edit/$id': typeof DashboardUsersEditIdLazyRoute
-  '/dashboard/users/show/$id': typeof DashboardUsersShowIdLazyRoute
-  '/dashboard/wiki/edit/$id': typeof DashboardWikiEditIdLazyRoute
-  '/dashboard/wiki/show/$id': typeof DashboardWikiShowIdLazyRoute
-  '/dashboard/curriculums/objects': typeof DashboardCurriculumsObjectsIndexRoute
-  '/dashboard/curriculums/skills': typeof DashboardCurriculumsSkillsIndexRoute
-  '/dashboard/curriculums/practices': typeof DashboardCurriculumsPracticesIndexLazyRoute
-  '/dashboard/curriculums/practices/edit/$id': typeof DashboardCurriculumsPracticesEditIdLazyRoute
-  '/dashboard/curriculums/practices/show/$id': typeof DashboardCurriculumsPracticesShowIdLazyRoute
-  '/dashboard/curriculums/skills/edit/$id': typeof DashboardCurriculumsSkillsEditIdLazyRoute
-  '/dashboard/curriculums/skills/show/$id': typeof DashboardCurriculumsSkillsShowIdLazyRoute
+  '/recover': typeof PublicRecoverRoute
+  '/signup': typeof PublicSignupRoute
+  '/': typeof PublicIndexRoute
+  '/catalog/$categorySlug': typeof AuthenticatedCatalogCategorySlugRouteWithChildren
+  '/catalog/dashboard': typeof AuthenticatedCatalogDashboardRoute
+  '/catalog': typeof AuthenticatedCatalogIndexRoute
+  '/catalog/$categorySlug/$subcategorySlug': typeof AuthenticatedCatalogCategorySlugSubcategorySlugRoute
 }
-
 export interface FileRoutesById {
-  __root__: typeof rootRoute
-  '/': typeof IndexLazyRoute
-  '/dashboard': typeof DashboardRouteWithChildren
-  '/login': typeof LoginRoute
-  '/dashboard/chat': typeof DashboardChatLazyRouteWithChildren
-  '/dashboard/news': typeof DashboardNewsLazyRoute
-  '/dashboard/permissions': typeof DashboardPermissionsLazyRoute
-  '/dashboard/profile': typeof DashboardProfileLazyRoute
-  '/dashboard/translations': typeof DashboardTranslationsLazyRoute
-  '/dashboard/': typeof DashboardIndexLazyRoute
-  '/dashboard/chat/analyze-scripts': typeof DashboardChatAnalyzeScriptsLazyRoute
-  '/dashboard/chat/designer': typeof DashboardChatDesignerLazyRoute
-  '/dashboard/checklists/create': typeof DashboardChecklistsCreateLazyRoute
-  '/dashboard/demands/create': typeof DashboardDemandsCreateLazyRoute
-  '/dashboard/documents/create': typeof DashboardDocumentsCreateLazyRoute
-  '/dashboard/institutions/create': typeof DashboardInstitutionsCreateLazyRoute
-  '/dashboard/issues/create': typeof DashboardIssuesCreateLazyRoute
-  '/dashboard/locales/create': typeof DashboardLocalesCreateLazyRoute
-  '/dashboard/releases/create': typeof DashboardReleasesCreateLazyRoute
-  '/dashboard/users/create': typeof DashboardUsersCreateLazyRoute
-  '/dashboard/wiki/archived': typeof DashboardWikiArchivedLazyRoute
-  '/dashboard/wiki/create': typeof DashboardWikiCreateLazyRoute
-  '/dashboard/calendar/': typeof DashboardCalendarIndexRoute
-  '/dashboard/checklists/': typeof DashboardChecklistsIndexRoute
-  '/dashboard/demands/': typeof DashboardDemandsIndexRoute
-  '/dashboard/documents/': typeof DashboardDocumentsIndexRoute
-  '/dashboard/institutions/': typeof DashboardInstitutionsIndexRoute
-  '/dashboard/issues/': typeof DashboardIssuesIndexRoute
-  '/dashboard/labs/': typeof DashboardLabsIndexRoute
-  '/dashboard/locales/': typeof DashboardLocalesIndexRoute
-  '/dashboard/releases/': typeof DashboardReleasesIndexRoute
-  '/dashboard/users/': typeof DashboardUsersIndexRoute
-  '/dashboard/chat/': typeof DashboardChatIndexLazyRoute
-  '/dashboard/wiki/': typeof DashboardWikiIndexLazyRoute
-  '/dashboard/labs/show/$id': typeof DashboardLabsShowIdRoute
-  '/dashboard/locales/edit/$id': typeof DashboardLocalesEditIdRoute
-  '/dashboard/locales/show/$id': typeof DashboardLocalesShowIdRoute
-  '/dashboard/checklists/edit/$id': typeof DashboardChecklistsEditIdLazyRoute
-  '/dashboard/checklists/show/$id': typeof DashboardChecklistsShowIdLazyRoute
-  '/dashboard/demands/edit/$id': typeof DashboardDemandsEditIdLazyRoute
-  '/dashboard/demands/show/$id': typeof DashboardDemandsShowIdLazyRoute
-  '/dashboard/documents/edit/$id': typeof DashboardDocumentsEditIdLazyRoute
-  '/dashboard/documents/show/$id': typeof DashboardDocumentsShowIdLazyRoute
-  '/dashboard/institutions/edit/$id': typeof DashboardInstitutionsEditIdLazyRoute
-  '/dashboard/institutions/show/$id': typeof DashboardInstitutionsShowIdLazyRoute
-  '/dashboard/issues/edit/$id': typeof DashboardIssuesEditIdLazyRoute
-  '/dashboard/issues/show/$id': typeof DashboardIssuesShowIdLazyRoute
-  '/dashboard/locales/mass-edit/$id': typeof DashboardLocalesMassEditIdLazyRoute
-  '/dashboard/releases/edit/$id': typeof DashboardReleasesEditIdLazyRoute
-  '/dashboard/releases/show/$id': typeof DashboardReleasesShowIdLazyRoute
-  '/dashboard/users/edit/$id': typeof DashboardUsersEditIdLazyRoute
-  '/dashboard/users/show/$id': typeof DashboardUsersShowIdLazyRoute
-  '/dashboard/wiki/edit/$id': typeof DashboardWikiEditIdLazyRoute
-  '/dashboard/wiki/show/$id': typeof DashboardWikiShowIdLazyRoute
-  '/dashboard/curriculums/objects/': typeof DashboardCurriculumsObjectsIndexRoute
-  '/dashboard/curriculums/skills/': typeof DashboardCurriculumsSkillsIndexRoute
-  '/dashboard/curriculums/practices/': typeof DashboardCurriculumsPracticesIndexLazyRoute
-  '/dashboard/curriculums/practices/edit/$id': typeof DashboardCurriculumsPracticesEditIdLazyRoute
-  '/dashboard/curriculums/practices/show/$id': typeof DashboardCurriculumsPracticesShowIdLazyRoute
-  '/dashboard/curriculums/skills/edit/$id': typeof DashboardCurriculumsSkillsEditIdLazyRoute
-  '/dashboard/curriculums/skills/show/$id': typeof DashboardCurriculumsSkillsShowIdLazyRoute
+  __root__: typeof rootRouteImport
+  '/_authenticated': typeof AuthenticatedRouteWithChildren
+  '/_public': typeof PublicRouteWithChildren
+  '/_authenticated/catalog': typeof AuthenticatedCatalogRouteWithChildren
+  '/_public/recover': typeof PublicRecoverRoute
+  '/_public/signup': typeof PublicSignupRoute
+  '/_public/': typeof PublicIndexRoute
+  '/_authenticated/catalog/$categorySlug': typeof AuthenticatedCatalogCategorySlugRouteWithChildren
+  '/_authenticated/catalog/dashboard': typeof AuthenticatedCatalogDashboardRoute
+  '/_authenticated/catalog/': typeof AuthenticatedCatalogIndexRoute
+  '/_authenticated/catalog/$categorySlug/$subcategorySlug': typeof AuthenticatedCatalogCategorySlugSubcategorySlugRoute
 }
-
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
+    | '/catalog'
+    | '/recover'
+    | '/signup'
     | '/'
-    | '/dashboard'
-    | '/login'
-    | '/dashboard/chat'
-    | '/dashboard/news'
-    | '/dashboard/permissions'
-    | '/dashboard/profile'
-    | '/dashboard/translations'
-    | '/dashboard/'
-    | '/dashboard/chat/analyze-scripts'
-    | '/dashboard/chat/designer'
-    | '/dashboard/checklists/create'
-    | '/dashboard/demands/create'
-    | '/dashboard/documents/create'
-    | '/dashboard/institutions/create'
-    | '/dashboard/issues/create'
-    | '/dashboard/locales/create'
-    | '/dashboard/releases/create'
-    | '/dashboard/users/create'
-    | '/dashboard/wiki/archived'
-    | '/dashboard/wiki/create'
-    | '/dashboard/calendar'
-    | '/dashboard/checklists'
-    | '/dashboard/demands'
-    | '/dashboard/documents'
-    | '/dashboard/institutions'
-    | '/dashboard/issues'
-    | '/dashboard/labs'
-    | '/dashboard/locales'
-    | '/dashboard/releases'
-    | '/dashboard/users'
-    | '/dashboard/chat/'
-    | '/dashboard/wiki'
-    | '/dashboard/labs/show/$id'
-    | '/dashboard/locales/edit/$id'
-    | '/dashboard/locales/show/$id'
-    | '/dashboard/checklists/edit/$id'
-    | '/dashboard/checklists/show/$id'
-    | '/dashboard/demands/edit/$id'
-    | '/dashboard/demands/show/$id'
-    | '/dashboard/documents/edit/$id'
-    | '/dashboard/documents/show/$id'
-    | '/dashboard/institutions/edit/$id'
-    | '/dashboard/institutions/show/$id'
-    | '/dashboard/issues/edit/$id'
-    | '/dashboard/issues/show/$id'
-    | '/dashboard/locales/mass-edit/$id'
-    | '/dashboard/releases/edit/$id'
-    | '/dashboard/releases/show/$id'
-    | '/dashboard/users/edit/$id'
-    | '/dashboard/users/show/$id'
-    | '/dashboard/wiki/edit/$id'
-    | '/dashboard/wiki/show/$id'
-    | '/dashboard/curriculums/objects'
-    | '/dashboard/curriculums/skills'
-    | '/dashboard/curriculums/practices'
-    | '/dashboard/curriculums/practices/edit/$id'
-    | '/dashboard/curriculums/practices/show/$id'
-    | '/dashboard/curriculums/skills/edit/$id'
-    | '/dashboard/curriculums/skills/show/$id'
+    | '/catalog/$categorySlug'
+    | '/catalog/dashboard'
+    | '/catalog/'
+    | '/catalog/$categorySlug/$subcategorySlug'
   fileRoutesByTo: FileRoutesByTo
   to:
+    | '/recover'
+    | '/signup'
     | '/'
-    | '/login'
-    | '/dashboard/news'
-    | '/dashboard/permissions'
-    | '/dashboard/profile'
-    | '/dashboard/translations'
-    | '/dashboard'
-    | '/dashboard/chat/analyze-scripts'
-    | '/dashboard/chat/designer'
-    | '/dashboard/checklists/create'
-    | '/dashboard/demands/create'
-    | '/dashboard/documents/create'
-    | '/dashboard/institutions/create'
-    | '/dashboard/issues/create'
-    | '/dashboard/locales/create'
-    | '/dashboard/releases/create'
-    | '/dashboard/users/create'
-    | '/dashboard/wiki/archived'
-    | '/dashboard/wiki/create'
-    | '/dashboard/calendar'
-    | '/dashboard/checklists'
-    | '/dashboard/demands'
-    | '/dashboard/documents'
-    | '/dashboard/institutions'
-    | '/dashboard/issues'
-    | '/dashboard/labs'
-    | '/dashboard/locales'
-    | '/dashboard/releases'
-    | '/dashboard/users'
-    | '/dashboard/chat'
-    | '/dashboard/wiki'
-    | '/dashboard/labs/show/$id'
-    | '/dashboard/locales/edit/$id'
-    | '/dashboard/locales/show/$id'
-    | '/dashboard/checklists/edit/$id'
-    | '/dashboard/checklists/show/$id'
-    | '/dashboard/demands/edit/$id'
-    | '/dashboard/demands/show/$id'
-    | '/dashboard/documents/edit/$id'
-    | '/dashboard/documents/show/$id'
-    | '/dashboard/institutions/edit/$id'
-    | '/dashboard/institutions/show/$id'
-    | '/dashboard/issues/edit/$id'
-    | '/dashboard/issues/show/$id'
-    | '/dashboard/locales/mass-edit/$id'
-    | '/dashboard/releases/edit/$id'
-    | '/dashboard/releases/show/$id'
-    | '/dashboard/users/edit/$id'
-    | '/dashboard/users/show/$id'
-    | '/dashboard/wiki/edit/$id'
-    | '/dashboard/wiki/show/$id'
-    | '/dashboard/curriculums/objects'
-    | '/dashboard/curriculums/skills'
-    | '/dashboard/curriculums/practices'
-    | '/dashboard/curriculums/practices/edit/$id'
-    | '/dashboard/curriculums/practices/show/$id'
-    | '/dashboard/curriculums/skills/edit/$id'
-    | '/dashboard/curriculums/skills/show/$id'
+    | '/catalog/$categorySlug'
+    | '/catalog/dashboard'
+    | '/catalog'
+    | '/catalog/$categorySlug/$subcategorySlug'
   id:
     | '__root__'
-    | '/'
-    | '/dashboard'
-    | '/login'
-    | '/dashboard/chat'
-    | '/dashboard/news'
-    | '/dashboard/permissions'
-    | '/dashboard/profile'
-    | '/dashboard/translations'
-    | '/dashboard/'
-    | '/dashboard/chat/analyze-scripts'
-    | '/dashboard/chat/designer'
-    | '/dashboard/checklists/create'
-    | '/dashboard/demands/create'
-    | '/dashboard/documents/create'
-    | '/dashboard/institutions/create'
-    | '/dashboard/issues/create'
-    | '/dashboard/locales/create'
-    | '/dashboard/releases/create'
-    | '/dashboard/users/create'
-    | '/dashboard/wiki/archived'
-    | '/dashboard/wiki/create'
-    | '/dashboard/calendar/'
-    | '/dashboard/checklists/'
-    | '/dashboard/demands/'
-    | '/dashboard/documents/'
-    | '/dashboard/institutions/'
-    | '/dashboard/issues/'
-    | '/dashboard/labs/'
-    | '/dashboard/locales/'
-    | '/dashboard/releases/'
-    | '/dashboard/users/'
-    | '/dashboard/chat/'
-    | '/dashboard/wiki/'
-    | '/dashboard/labs/show/$id'
-    | '/dashboard/locales/edit/$id'
-    | '/dashboard/locales/show/$id'
-    | '/dashboard/checklists/edit/$id'
-    | '/dashboard/checklists/show/$id'
-    | '/dashboard/demands/edit/$id'
-    | '/dashboard/demands/show/$id'
-    | '/dashboard/documents/edit/$id'
-    | '/dashboard/documents/show/$id'
-    | '/dashboard/institutions/edit/$id'
-    | '/dashboard/institutions/show/$id'
-    | '/dashboard/issues/edit/$id'
-    | '/dashboard/issues/show/$id'
-    | '/dashboard/locales/mass-edit/$id'
-    | '/dashboard/releases/edit/$id'
-    | '/dashboard/releases/show/$id'
-    | '/dashboard/users/edit/$id'
-    | '/dashboard/users/show/$id'
-    | '/dashboard/wiki/edit/$id'
-    | '/dashboard/wiki/show/$id'
-    | '/dashboard/curriculums/objects/'
-    | '/dashboard/curriculums/skills/'
-    | '/dashboard/curriculums/practices/'
-    | '/dashboard/curriculums/practices/edit/$id'
-    | '/dashboard/curriculums/practices/show/$id'
-    | '/dashboard/curriculums/skills/edit/$id'
-    | '/dashboard/curriculums/skills/show/$id'
+    | '/_authenticated'
+    | '/_public'
+    | '/_authenticated/catalog'
+    | '/_public/recover'
+    | '/_public/signup'
+    | '/_public/'
+    | '/_authenticated/catalog/$categorySlug'
+    | '/_authenticated/catalog/dashboard'
+    | '/_authenticated/catalog/'
+    | '/_authenticated/catalog/$categorySlug/$subcategorySlug'
   fileRoutesById: FileRoutesById
 }
-
 export interface RootRouteChildren {
-  IndexLazyRoute: typeof IndexLazyRoute
-  DashboardRoute: typeof DashboardRouteWithChildren
-  LoginRoute: typeof LoginRoute
+  AuthenticatedRoute: typeof AuthenticatedRouteWithChildren
+  PublicRoute: typeof PublicRouteWithChildren
 }
 
-const rootRouteChildren: RootRouteChildren = {
-  IndexLazyRoute: IndexLazyRoute,
-  DashboardRoute: DashboardRouteWithChildren,
-  LoginRoute: LoginRoute,
-}
-
-export const routeTree = rootRoute
-  ._addFileChildren(rootRouteChildren)
-  ._addFileTypes<FileRouteTypes>()
-
-/* ROUTE_MANIFEST_START
-{
-  "routes": {
-    "__root__": {
-      "filePath": "__root.tsx",
-      "children": [
-        "/",
-        "/dashboard",
-        "/login"
-      ]
-    },
-    "/": {
-      "filePath": "index.lazy.tsx"
-    },
-    "/dashboard": {
-      "filePath": "dashboard.tsx",
-      "children": [
-        "/dashboard/chat",
-        "/dashboard/news",
-        "/dashboard/permissions",
-        "/dashboard/profile",
-        "/dashboard/translations",
-        "/dashboard/",
-        "/dashboard/checklists/create",
-        "/dashboard/demands/create",
-        "/dashboard/documents/create",
-        "/dashboard/institutions/create",
-        "/dashboard/issues/create",
-        "/dashboard/locales/create",
-        "/dashboard/releases/create",
-        "/dashboard/users/create",
-        "/dashboard/wiki/archived",
-        "/dashboard/wiki/create",
-        "/dashboard/calendar/",
-        "/dashboard/checklists/",
-        "/dashboard/demands/",
-        "/dashboard/documents/",
-        "/dashboard/institutions/",
-        "/dashboard/issues/",
-        "/dashboard/labs/",
-        "/dashboard/locales/",
-        "/dashboard/releases/",
-        "/dashboard/users/",
-        "/dashboard/wiki/",
-        "/dashboard/labs/show/$id",
-        "/dashboard/locales/edit/$id",
-        "/dashboard/locales/show/$id",
-        "/dashboard/checklists/edit/$id",
-        "/dashboard/checklists/show/$id",
-        "/dashboard/demands/edit/$id",
-        "/dashboard/demands/show/$id",
-        "/dashboard/documents/edit/$id",
-        "/dashboard/documents/show/$id",
-        "/dashboard/institutions/edit/$id",
-        "/dashboard/institutions/show/$id",
-        "/dashboard/issues/edit/$id",
-        "/dashboard/issues/show/$id",
-        "/dashboard/locales/mass-edit/$id",
-        "/dashboard/releases/edit/$id",
-        "/dashboard/releases/show/$id",
-        "/dashboard/users/edit/$id",
-        "/dashboard/users/show/$id",
-        "/dashboard/wiki/edit/$id",
-        "/dashboard/wiki/show/$id",
-        "/dashboard/curriculums/objects/",
-        "/dashboard/curriculums/skills/",
-        "/dashboard/curriculums/practices/",
-        "/dashboard/curriculums/practices/edit/$id",
-        "/dashboard/curriculums/practices/show/$id",
-        "/dashboard/curriculums/skills/edit/$id",
-        "/dashboard/curriculums/skills/show/$id"
-      ]
-    },
-    "/login": {
-      "filePath": "login.tsx"
-    },
-    "/dashboard/chat": {
-      "filePath": "dashboard/chat.lazy.tsx",
-      "parent": "/dashboard",
-      "children": [
-        "/dashboard/chat/analyze-scripts",
-        "/dashboard/chat/designer",
-        "/dashboard/chat/"
-      ]
-    },
-    "/dashboard/news": {
-      "filePath": "dashboard/news.lazy.tsx",
-      "parent": "/dashboard"
-    },
-    "/dashboard/permissions": {
-      "filePath": "dashboard/permissions.lazy.tsx",
-      "parent": "/dashboard"
-    },
-    "/dashboard/profile": {
-      "filePath": "dashboard/profile.lazy.tsx",
-      "parent": "/dashboard"
-    },
-    "/dashboard/translations": {
-      "filePath": "dashboard/translations.lazy.tsx",
-      "parent": "/dashboard"
-    },
-    "/dashboard/": {
-      "filePath": "dashboard/index.lazy.tsx",
-      "parent": "/dashboard"
-    },
-    "/dashboard/chat/analyze-scripts": {
-      "filePath": "dashboard/chat/analyze-scripts.lazy.tsx",
-      "parent": "/dashboard/chat"
-    },
-    "/dashboard/chat/designer": {
-      "filePath": "dashboard/chat/designer.lazy.tsx",
-      "parent": "/dashboard/chat"
-    },
-    "/dashboard/checklists/create": {
-      "filePath": "dashboard/checklists/create.lazy.tsx",
-      "parent": "/dashboard"
-    },
-    "/dashboard/demands/create": {
-      "filePath": "dashboard/demands/create.lazy.tsx",
-      "parent": "/dashboard"
-    },
-    "/dashboard/documents/create": {
-      "filePath": "dashboard/documents/create.lazy.tsx",
-      "parent": "/dashboard"
-    },
-    "/dashboard/institutions/create": {
-      "filePath": "dashboard/institutions/create.lazy.tsx",
-      "parent": "/dashboard"
-    },
-    "/dashboard/issues/create": {
-      "filePath": "dashboard/issues/create.lazy.tsx",
-      "parent": "/dashboard"
-    },
-    "/dashboard/locales/create": {
-      "filePath": "dashboard/locales/create.lazy.tsx",
-      "parent": "/dashboard"
-    },
-    "/dashboard/releases/create": {
-      "filePath": "dashboard/releases/create.lazy.tsx",
-      "parent": "/dashboard"
-    },
-    "/dashboard/users/create": {
-      "filePath": "dashboard/users/create.lazy.tsx",
-      "parent": "/dashboard"
-    },
-    "/dashboard/wiki/archived": {
-      "filePath": "dashboard/wiki/archived.lazy.tsx",
-      "parent": "/dashboard"
-    },
-    "/dashboard/wiki/create": {
-      "filePath": "dashboard/wiki/create.lazy.tsx",
-      "parent": "/dashboard"
-    },
-    "/dashboard/calendar/": {
-      "filePath": "dashboard/calendar/index.tsx",
-      "parent": "/dashboard"
-    },
-    "/dashboard/checklists/": {
-      "filePath": "dashboard/checklists/index.tsx",
-      "parent": "/dashboard"
-    },
-    "/dashboard/demands/": {
-      "filePath": "dashboard/demands/index.tsx",
-      "parent": "/dashboard"
-    },
-    "/dashboard/documents/": {
-      "filePath": "dashboard/documents/index.tsx",
-      "parent": "/dashboard"
-    },
-    "/dashboard/institutions/": {
-      "filePath": "dashboard/institutions/index.tsx",
-      "parent": "/dashboard"
-    },
-    "/dashboard/issues/": {
-      "filePath": "dashboard/issues/index.tsx",
-      "parent": "/dashboard"
-    },
-    "/dashboard/labs/": {
-      "filePath": "dashboard/labs/index.tsx",
-      "parent": "/dashboard"
-    },
-    "/dashboard/locales/": {
-      "filePath": "dashboard/locales/index.tsx",
-      "parent": "/dashboard"
-    },
-    "/dashboard/releases/": {
-      "filePath": "dashboard/releases/index.tsx",
-      "parent": "/dashboard"
-    },
-    "/dashboard/users/": {
-      "filePath": "dashboard/users/index.tsx",
-      "parent": "/dashboard"
-    },
-    "/dashboard/chat/": {
-      "filePath": "dashboard/chat/index.lazy.tsx",
-      "parent": "/dashboard/chat"
-    },
-    "/dashboard/wiki/": {
-      "filePath": "dashboard/wiki/index.lazy.tsx",
-      "parent": "/dashboard"
-    },
-    "/dashboard/labs/show/$id": {
-      "filePath": "dashboard/labs/show.$id.tsx",
-      "parent": "/dashboard"
-    },
-    "/dashboard/locales/edit/$id": {
-      "filePath": "dashboard/locales/edit.$id.tsx",
-      "parent": "/dashboard"
-    },
-    "/dashboard/locales/show/$id": {
-      "filePath": "dashboard/locales/show.$id.tsx",
-      "parent": "/dashboard"
-    },
-    "/dashboard/checklists/edit/$id": {
-      "filePath": "dashboard/checklists/edit.$id.lazy.tsx",
-      "parent": "/dashboard"
-    },
-    "/dashboard/checklists/show/$id": {
-      "filePath": "dashboard/checklists/show.$id.lazy.tsx",
-      "parent": "/dashboard"
-    },
-    "/dashboard/demands/edit/$id": {
-      "filePath": "dashboard/demands/edit.$id.lazy.tsx",
-      "parent": "/dashboard"
-    },
-    "/dashboard/demands/show/$id": {
-      "filePath": "dashboard/demands/show.$id.lazy.tsx",
-      "parent": "/dashboard"
-    },
-    "/dashboard/documents/edit/$id": {
-      "filePath": "dashboard/documents/edit.$id.lazy.tsx",
-      "parent": "/dashboard"
-    },
-    "/dashboard/documents/show/$id": {
-      "filePath": "dashboard/documents/show.$id.lazy.tsx",
-      "parent": "/dashboard"
-    },
-    "/dashboard/institutions/edit/$id": {
-      "filePath": "dashboard/institutions/edit.$id.lazy.tsx",
-      "parent": "/dashboard"
-    },
-    "/dashboard/institutions/show/$id": {
-      "filePath": "dashboard/institutions/show.$id.lazy.tsx",
-      "parent": "/dashboard"
-    },
-    "/dashboard/issues/edit/$id": {
-      "filePath": "dashboard/issues/edit.$id.lazy.tsx",
-      "parent": "/dashboard"
-    },
-    "/dashboard/issues/show/$id": {
-      "filePath": "dashboard/issues/show.$id.lazy.tsx",
-      "parent": "/dashboard"
-    },
-    "/dashboard/locales/mass-edit/$id": {
-      "filePath": "dashboard/locales/mass-edit.$id.lazy.tsx",
-      "parent": "/dashboard"
-    },
-    "/dashboard/releases/edit/$id": {
-      "filePath": "dashboard/releases/edit.$id.lazy.tsx",
-      "parent": "/dashboard"
-    },
-    "/dashboard/releases/show/$id": {
-      "filePath": "dashboard/releases/show.$id.lazy.tsx",
-      "parent": "/dashboard"
-    },
-    "/dashboard/users/edit/$id": {
-      "filePath": "dashboard/users/edit.$id.lazy.tsx",
-      "parent": "/dashboard"
-    },
-    "/dashboard/users/show/$id": {
-      "filePath": "dashboard/users/show.$id.lazy.tsx",
-      "parent": "/dashboard"
-    },
-    "/dashboard/wiki/edit/$id": {
-      "filePath": "dashboard/wiki/edit.$id.lazy.tsx",
-      "parent": "/dashboard"
-    },
-    "/dashboard/wiki/show/$id": {
-      "filePath": "dashboard/wiki/show.$id.lazy.tsx",
-      "parent": "/dashboard"
-    },
-    "/dashboard/curriculums/objects/": {
-      "filePath": "dashboard/curriculums/objects/index.tsx",
-      "parent": "/dashboard"
-    },
-    "/dashboard/curriculums/skills/": {
-      "filePath": "dashboard/curriculums/skills/index.tsx",
-      "parent": "/dashboard"
-    },
-    "/dashboard/curriculums/practices/": {
-      "filePath": "dashboard/curriculums/practices/index.lazy.tsx",
-      "parent": "/dashboard"
-    },
-    "/dashboard/curriculums/practices/edit/$id": {
-      "filePath": "dashboard/curriculums/practices/edit.$id.lazy.tsx",
-      "parent": "/dashboard"
-    },
-    "/dashboard/curriculums/practices/show/$id": {
-      "filePath": "dashboard/curriculums/practices/show.$id.lazy.tsx",
-      "parent": "/dashboard"
-    },
-    "/dashboard/curriculums/skills/edit/$id": {
-      "filePath": "dashboard/curriculums/skills/edit.$id.lazy.tsx",
-      "parent": "/dashboard"
-    },
-    "/dashboard/curriculums/skills/show/$id": {
-      "filePath": "dashboard/curriculums/skills/show.$id.lazy.tsx",
-      "parent": "/dashboard"
+declare module '@tanstack/react-router' {
+  interface FileRoutesByPath {
+    '/_public': {
+      id: '/_public'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof PublicRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof AuthenticatedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_public/': {
+      id: '/_public/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof PublicIndexRouteImport
+      parentRoute: typeof PublicRoute
+    }
+    '/_public/signup': {
+      id: '/_public/signup'
+      path: '/signup'
+      fullPath: '/signup'
+      preLoaderRoute: typeof PublicSignupRouteImport
+      parentRoute: typeof PublicRoute
+    }
+    '/_public/recover': {
+      id: '/_public/recover'
+      path: '/recover'
+      fullPath: '/recover'
+      preLoaderRoute: typeof PublicRecoverRouteImport
+      parentRoute: typeof PublicRoute
+    }
+    '/_authenticated/catalog': {
+      id: '/_authenticated/catalog'
+      path: '/catalog'
+      fullPath: '/catalog'
+      preLoaderRoute: typeof AuthenticatedCatalogRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/catalog/': {
+      id: '/_authenticated/catalog/'
+      path: '/'
+      fullPath: '/catalog/'
+      preLoaderRoute: typeof AuthenticatedCatalogIndexRouteImport
+      parentRoute: typeof AuthenticatedCatalogRoute
+    }
+    '/_authenticated/catalog/dashboard': {
+      id: '/_authenticated/catalog/dashboard'
+      path: '/dashboard'
+      fullPath: '/catalog/dashboard'
+      preLoaderRoute: typeof AuthenticatedCatalogDashboardRouteImport
+      parentRoute: typeof AuthenticatedCatalogRoute
+    }
+    '/_authenticated/catalog/$categorySlug': {
+      id: '/_authenticated/catalog/$categorySlug'
+      path: '/$categorySlug'
+      fullPath: '/catalog/$categorySlug'
+      preLoaderRoute: typeof AuthenticatedCatalogCategorySlugRouteImport
+      parentRoute: typeof AuthenticatedCatalogRoute
+    }
+    '/_authenticated/catalog/$categorySlug/$subcategorySlug': {
+      id: '/_authenticated/catalog/$categorySlug/$subcategorySlug'
+      path: '/$subcategorySlug'
+      fullPath: '/catalog/$categorySlug/$subcategorySlug'
+      preLoaderRoute: typeof AuthenticatedCatalogCategorySlugSubcategorySlugRouteImport
+      parentRoute: typeof AuthenticatedCatalogCategorySlugRoute
     }
   }
 }
-ROUTE_MANIFEST_END */
+
+interface AuthenticatedCatalogCategorySlugRouteChildren {
+  AuthenticatedCatalogCategorySlugSubcategorySlugRoute: typeof AuthenticatedCatalogCategorySlugSubcategorySlugRoute
+}
+
+const AuthenticatedCatalogCategorySlugRouteChildren: AuthenticatedCatalogCategorySlugRouteChildren =
+  {
+    AuthenticatedCatalogCategorySlugSubcategorySlugRoute:
+      AuthenticatedCatalogCategorySlugSubcategorySlugRoute,
+  }
+
+const AuthenticatedCatalogCategorySlugRouteWithChildren =
+  AuthenticatedCatalogCategorySlugRoute._addFileChildren(
+    AuthenticatedCatalogCategorySlugRouteChildren,
+  )
+
+interface AuthenticatedCatalogRouteChildren {
+  AuthenticatedCatalogCategorySlugRoute: typeof AuthenticatedCatalogCategorySlugRouteWithChildren
+  AuthenticatedCatalogDashboardRoute: typeof AuthenticatedCatalogDashboardRoute
+  AuthenticatedCatalogIndexRoute: typeof AuthenticatedCatalogIndexRoute
+}
+
+const AuthenticatedCatalogRouteChildren: AuthenticatedCatalogRouteChildren = {
+  AuthenticatedCatalogCategorySlugRoute:
+    AuthenticatedCatalogCategorySlugRouteWithChildren,
+  AuthenticatedCatalogDashboardRoute: AuthenticatedCatalogDashboardRoute,
+  AuthenticatedCatalogIndexRoute: AuthenticatedCatalogIndexRoute,
+}
+
+const AuthenticatedCatalogRouteWithChildren =
+  AuthenticatedCatalogRoute._addFileChildren(AuthenticatedCatalogRouteChildren)
+
+interface AuthenticatedRouteChildren {
+  AuthenticatedCatalogRoute: typeof AuthenticatedCatalogRouteWithChildren
+}
+
+const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
+  AuthenticatedCatalogRoute: AuthenticatedCatalogRouteWithChildren,
+}
+
+const AuthenticatedRouteWithChildren = AuthenticatedRoute._addFileChildren(
+  AuthenticatedRouteChildren,
+)
+
+interface PublicRouteChildren {
+  PublicRecoverRoute: typeof PublicRecoverRoute
+  PublicSignupRoute: typeof PublicSignupRoute
+  PublicIndexRoute: typeof PublicIndexRoute
+}
+
+const PublicRouteChildren: PublicRouteChildren = {
+  PublicRecoverRoute: PublicRecoverRoute,
+  PublicSignupRoute: PublicSignupRoute,
+  PublicIndexRoute: PublicIndexRoute,
+}
+
+const PublicRouteWithChildren =
+  PublicRoute._addFileChildren(PublicRouteChildren)
+
+const rootRouteChildren: RootRouteChildren = {
+  AuthenticatedRoute: AuthenticatedRouteWithChildren,
+  PublicRoute: PublicRouteWithChildren,
+}
+export const routeTree = rootRouteImport
+  ._addFileChildren(rootRouteChildren)
+  ._addFileTypes<FileRouteTypes>()

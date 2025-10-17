@@ -1,29 +1,29 @@
-import "./index.css";
-
 import { StrictMode } from "react";
+
+import { createRouter, RouterProvider } from "@tanstack/react-router";
 import { createRoot } from "react-dom/client";
-import { twi } from "tw-to-css";
+import * as z from "zod";
+import { pt } from "zod/locales";
+import "./index.css";
+import "./lib/i18n";
 
-import App from "./App.tsx";
+import { routeTree } from "./routeTree.gen";
 
-window.twi = twi;
+z.config(pt());
+const router = createRouter({ routeTree });
 
-async function enableMocking() {
-  if (process.env.NODE_ENV !== "development") {
-    return;
+declare module "@tanstack/react-router" {
+  interface Register {
+    router: typeof router;
   }
-
-  const { worker } = await import("./mocks/browser");
-
-  // `worker.start()` returns a Promise that resolves
-  // once the Service Worker is up and ready to intercept requests.
-  return worker.start();
 }
 
-enableMocking().then(() => {
-  createRoot(document.getElementById("root")!).render(
+const rootElement = document.getElementById("root")!;
+if (!rootElement.innerHTML) {
+  const root = createRoot(rootElement);
+  root.render(
     <StrictMode>
-      <App />
+      <RouterProvider router={router} />
     </StrictMode>
   );
-});
+}

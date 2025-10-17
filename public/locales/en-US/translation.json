@@ -1,0 +1,46 @@
+{
+  "login": {
+    "title": "Catalog",
+    "subtitle": "Log in to your account to continue",
+    "emailLabel": "Email",
+    "passwordLabel": "Password",
+    "forgotPassword": "Forgot your password?",
+    "submitButton": "Log In",
+    "noAccount": "Don't have an account?",
+    "signUp": "Sign Up",
+    "terms": {
+      "fullText": "By clicking continue, you agree to our <1>Terms of Service</1> and <3>Privacy Policy</3>."
+    }
+  },
+  "navUser": {
+    "dashboard": "Dashboard",
+    "theme": {
+      "title": "Theme",
+      "light": "Light",
+      "dark": "Dark"
+    },
+    "language": {
+      "title": "Language",
+      "pt": "Portuguese",
+      "en": "English",
+      "es": "Spanish"
+    },
+    "logout": "Log out"
+  },
+  "breadcrumbs": {
+    "home": "Home",
+    "dashboard": "Dashboard"
+  },
+  "catalogIndex": {
+    "title": "Virtual Laboratories: Real Practice for Higher Education",
+    "p1": "Bring the hands-on experience of engineering and health labs to your students, wherever they are.",
+    "p2": "Our Virtual Laboratories replicate with extremely high fidelity the experiments performed on ALGETEC's physical equipment. Fully aligned with your institution's pedagogical plan, they allow students to master the practical concepts of the subject on an interactive and safe platform.",
+    "journeyTitle": "How the journey works:",
+    "journeyStep1": "<strong>Seamless Integration:</strong> The Virtual Learning Environment (VLE) tells the student the exact moment to perform the virtual practice.",
+    "journeyStep2": "<strong>Learning and Mastery:</strong> The student executes the scripted experiments, learns the concepts, and becomes familiar with the processes.",
+    "journeyStep3": "<strong>Complete Preparation:</strong> After finishing the virtual practice, the student is fully enabled and prepared for experimentation on ALGETEC's physical equipment.",
+    "p3": "Transform teaching at your institution.",
+    "p4": "The specialists at <strong>Plataforma A</strong> are ready to guide you on the best offer of ALGETEC virtual labs for your institution. Let's talk about the next steps!",
+    "button": "Talk to a specialist"
+  }
+}
