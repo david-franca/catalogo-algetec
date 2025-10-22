@@ -1,5 +1,8 @@
+import { useState } from "react";
+
 import { Link, useParams } from "@tanstack/react-router";
 import { ChevronRight, type LucideIcon } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 import {
   Collapsible,
@@ -18,18 +21,33 @@ import {
 } from "@/components/ui/sidebar";
 
 const colorClasses = {
-  red: "hover:text-red-500 data-[active=true]:text-red-500 data-[state=open]:text-red-500",
+  red: "hover:text-red-500! data-[active=true]:text-red-500 data-[state=open]:text-red-500 hover:bg-red-500/10",
   green:
-    "hover:text-green-500 data-[active=true]:text-green-500 data-[state=open]:text-green-500",
-  blue: "hover:text-blue-500 data-[active=true]:text-blue-500 data-[state=open]:text-blue-500",
+    "hover:text-green-500! data-[active=true]:text-green-500 data-[state=open]:text-green-500 hover:bg-green-500/10",
+  blue: "hover:text-blue-500! data-[active=true]:text-blue-500 data-[state=open]:text-blue-500 hover:bg-blue-500/10",
   yellow:
-    "hover:text-yellow-500 data-[active=true]:text-yellow-500 data-[state=open]:text-yellow-500",
+    "hover:text-yellow-500! data-[active=true]:text-yellow-500 data-[state=open]:text-yellow-500 hover:bg-yellow-500/10",
   purple:
-    "hover:text-purple-500 data-[active=true]:text-purple-500 data-[state=open]:text-purple-500",
+    "hover:text-purple-500! data-[active=true]:text-purple-500 data-[state=open]:text-purple-500 hover:bg-purple-500/10",
   orange:
-    "hover:text-orange-500 data-[active=true]:text-orange-500 data-[state=open]:text-orange-500",
-  pink: "hover:text-pink-500 data-[active=true]:text-pink-500 data-[state=open]:text-pink-500",
-  gray: "hover:text-gray-500 data-[active=true]:text-gray-500 data-[state=open]:text-gray-500",
+    "hover:text-orange-500! data-[active=true]:text-orange-500 data-[state=open]:text-orange-500 hover:bg-orange-500/10",
+  pink: "hover:text-pink-500! data-[active=true]:text-pink-500 data-[state=open]:text-pink-500 hover:bg-pink-500/10",
+  gray: "hover:text-gray-500! data-[active=true]:text-gray-500 data-[state=open]:text-gray-500 hover:bg-gray-500/10",
+};
+
+const subColorClasses = {
+  red: "hover:text-red-500 data-[active=true]:text-red-500 hover:bg-red-500/10 data-[active=true]:bg-red-500/10",
+  green:
+    "hover:text-green-500 data-[active=true]:text-green-500 hover:bg-green-500/10 data-[active=true]:bg-green-500/10",
+  blue: "hover:text-blue-500 data-[active=true]:text-blue-500 hover:bg-blue-500/10 data-[active=true]:bg-blue-500/10",
+  yellow:
+    "hover:text-yellow-500 data-[active=true]:text-yellow-500 hover:bg-yellow-500/10 data-[active=true]:bg-yellow-500/10",
+  purple:
+    "hover:text-purple-500 data-[active=true]:text-purple-500 hover:bg-purple-500/10 data-[active=true]:bg-purple-500/10",
+  orange:
+    "hover:text-orange-500 data-[active=true]:text-orange-500 hover:bg-orange-500/10 data-[active=true]:bg-orange-500/10",
+  pink: "hover:text-pink-500 data-[active=true]:text-pink-500 hover:bg-pink-500/10 data-[active=true]:bg-pink-500/10",
+  gray: "hover:text-gray-500 data-[active=true]:text-gray-500 hover:bg-gray-500/10 data-[active=true]:bg-gray-500/10",
 };
 
 export function NavMain({
@@ -54,15 +72,42 @@ export function NavMain({
     strict: false,
   });
 
+  // Estado para controlar os itens abertos. Armazena os títulos dos itens.
+  const [openItems, setOpenItems] = useState<Set<string>>(() => {
+    // Inicializa o estado com os itens que devem estar abertos por padrão (ativos)
+    const initiallyOpen = new Set<string>();
+    items?.forEach((item) => {
+      if (item.isActive) {
+        initiallyOpen.add(item.title);
+      }
+    });
+    return initiallyOpen;
+  });
+
+  // Função para alternar o estado de um item
+  const toggleItem = (title: string) => {
+    setOpenItems((prev) => {
+      const newSet = new Set(prev);
+      if (newSet.has(title)) {
+        newSet.delete(title);
+      } else {
+        newSet.add(title);
+      }
+      return newSet;
+    });
+  };
+
+  const { t } = useTranslation();
+
   return (
     <SidebarGroup>
-      <SidebarGroupLabel>Categorias</SidebarGroupLabel>
+      <SidebarGroupLabel>{t("navUser.categories")}</SidebarGroupLabel>
       <SidebarMenu>
         {items?.map((item) => (
           <Collapsible
             key={crypto.randomUUID()}
-            asChild
-            defaultOpen={item.isActive}
+            open={openItems.has(item.title)}
+            onOpenChange={() => toggleItem(item.title)}
             className="group/collapsible"
           >
             <SidebarMenuItem>
@@ -72,7 +117,7 @@ export function NavMain({
                   isActive={item.isActive}
                   className={
                     item.color
-                      ? `${colorClasses[item.color as keyof typeof colorClasses]} data-[active=true]:hover:text-${item.color}-500 data-[state=open]:hover:text-${item.color}-500`
+                      ? colorClasses[item.color as keyof typeof colorClasses]
                       : ""
                   }
                 >
@@ -90,7 +135,9 @@ export function NavMain({
                         isActive={subItem.slug === subcategorySlug}
                         className={
                           item.color
-                            ? `data-[active=true]:text-${item.color}-500`
+                            ? subColorClasses[
+                                item.color as keyof typeof subColorClasses
+                              ]
                             : ""
                         }
                       >

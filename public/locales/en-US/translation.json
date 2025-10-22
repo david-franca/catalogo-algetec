@@ -13,6 +13,8 @@
     }
   },
   "navUser": {
+    "categories": "Categories",
+    "disciplines": "Disciplines",
     "dashboard": "Dashboard",
     "theme": {
       "title": "Theme",
