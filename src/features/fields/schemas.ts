@@ -16,7 +16,7 @@ type Tag = z.infer<typeof tagSchema>;
  * 2. Defina a ESTRUTURA RECURSIVA como um tipo TypeScript primeiro.
  * A interface 'Experiment' se refere a si mesma no campo 'experiments'.
  */
-type Experiment = {
+interface Experiment {
   field_id: number;
   name: string;
   description: string | null;
@@ -36,7 +36,7 @@ type Experiment = {
   original_experiment_id: string | null;
   experiments?: Experiment[]; // A parte recursiva
   tags: Tag[];
-};
+}
 
 /**
  * 3. Agora, crie o schema Zod, ANOTANDO explicitamente com o tipo.

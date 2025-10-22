@@ -1,3 +1,4 @@
+import { Link, useParams } from "@tanstack/react-router";
 import { ChevronRight, type LucideIcon } from "lucide-react";
 
 import {
@@ -15,7 +16,6 @@ import {
   SidebarMenuSubButton,
   SidebarMenuSubItem,
 } from "@/components/ui/sidebar";
-import { Link, useParams } from "@tanstack/react-router";
 
 const colorClasses = {
   red: "hover:text-red-500 data-[active=true]:text-red-500 data-[state=open]:text-red-500",
@@ -60,7 +60,7 @@ export function NavMain({
       <SidebarMenu>
         {items?.map((item) => (
           <Collapsible
-            key={item.title}
+            key={crypto.randomUUID()}
             asChild
             defaultOpen={item.isActive}
             className="group/collapsible"

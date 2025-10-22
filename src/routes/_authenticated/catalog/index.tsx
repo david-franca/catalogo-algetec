@@ -1,8 +1,9 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { Trans, useTranslation } from "react-i18next";
+
 import mockup from "@/assets/mockup.webp";
 import { Button } from "@/components/ui/button";
 import { CardContent, CardHeader } from "@/components/ui/card";
-import { createFileRoute } from "@tanstack/react-router";
-import { Trans, useTranslation } from "react-i18next";
 
 export const Route = createFileRoute("/_authenticated/catalog/")({
   component: RouteComponent,
