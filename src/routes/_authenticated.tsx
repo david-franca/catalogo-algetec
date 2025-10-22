@@ -44,7 +44,7 @@ function AuthenticatedLayout() {
       <div className="flex h-screen items-center justify-center">
         <p className="text-red-500">
           Erro ao carregar a navegação principal:{" "}
-          {error?.message || "Erro desconhecido"}
+          {error?.message ?? "Erro desconhecido"}
         </p>
       </div>
     );

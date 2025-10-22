@@ -1,6 +1,7 @@
 import { Link, useMatches } from "@tanstack/react-router";
-import { useTranslation } from "react-i18next";
 import { Fragment } from "react/jsx-runtime";
+import { useTranslation } from "react-i18next";
+
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -45,7 +46,7 @@ export function AppBreadcrumb() {
     <Breadcrumb className="hidden md:flex">
       <BreadcrumbList>
         {crumbs.map((crumb, index) => (
-          <Fragment key={index}>
+          <Fragment key={crypto.randomUUID()}>
             <BreadcrumbItem>
               {index === crumbs.length - 1 ? (
                 <BreadcrumbPage>{getCrumbLabel(crumb)}</BreadcrumbPage>

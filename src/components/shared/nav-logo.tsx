@@ -1,6 +1,7 @@
 "use client";
 
-import { useTheme } from "@/app/providers/theme-provider";
+import { Link } from "@tanstack/react-router";
+
 import dark from "@/assets/dark.png";
 import light from "@/assets/light.png";
 import {
@@ -9,7 +10,7 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar";
-import { Link } from "@tanstack/react-router";
+import { useTheme } from "@/hooks/useTheme";
 
 export function NavLogo() {
   const { state } = useSidebar();

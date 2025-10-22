@@ -16,7 +16,11 @@ describe("Vitest Setup Check", () => {
 
   it("should recognize jest-dom matchers like .toBeDisabled", () => {
     // Arrange
-    render(<button disabled>Click me</button>);
+    render(
+      <button type="button" disabled>
+        Click me
+      </button>
+    );
 
     // Act
     const button = screen.getByRole("button");

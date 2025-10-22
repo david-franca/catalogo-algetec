@@ -1,6 +1,7 @@
+import { useNavigate } from "@tanstack/react-router";
 import { ChevronsUpDown, LogOut, MoonIcon, SunIcon } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
-import { useTheme } from "@/app/providers/theme-provider";
 import { useAuthStore } from "@/app/store/authStore";
 import {
   DropdownMenu,
@@ -23,8 +24,8 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 import type { UserResponse } from "@/features/authentication/schemas";
-import { useNavigate } from "@tanstack/react-router";
-import { useTranslation } from "react-i18next";
+import { useTheme } from "@/hooks/useTheme";
+
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 
 export function NavUser({ user }: { user: UserResponse | null }) {
@@ -34,13 +35,13 @@ export function NavUser({ user }: { user: UserResponse | null }) {
   const { theme, setTheme } = useTheme();
   const { t, i18n } = useTranslation();
 
-  const handleLogout = async () => {
+  const handleLogout = () => {
     logout();
-    void (await navigate({ to: "/", replace: true }));
+    void navigate({ to: "/", replace: true });
   };
 
   const changeLanguage = (lng: string) => {
-    i18n.changeLanguage(lng);
+    void i18n.changeLanguage(lng);
   };
 
   if (!user) {

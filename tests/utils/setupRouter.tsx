@@ -1,10 +1,11 @@
-import { LoginForm } from "@/components/login-form";
 import {
   createMemoryHistory,
   createRootRoute,
   createRoute,
   createRouter,
 } from "@tanstack/react-router";
+
+import { LoginForm } from "@/components/login-form";
 
 export const setupRouter = () => {
   // --- Setup do Router ---

@@ -3,7 +3,7 @@ import LanguageDetector from "i18next-browser-languagedetector";
 import Backend from "i18next-http-backend";
 import { initReactI18next } from "react-i18next";
 
-i18n
+void i18n
   // Carrega traduções da sua pasta /public/locales
   .use(Backend)
   // Detecta e armazena o idioma do usuário (localStorage, cookie, etc.)

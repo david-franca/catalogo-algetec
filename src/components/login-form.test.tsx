@@ -1,8 +1,5 @@
 import { screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { beforeEach, describe, expect, it, vi } from "vitest";
-
-import { useAuthStore } from "@/app/store/authStore";
 import {
   loginHandlerError401,
   loginHandlerError500,
@@ -10,6 +7,9 @@ import {
 import { server } from "@tests/mocks/server";
 import { renderWithProviders } from "@tests/utils/renderWithProviders";
 import { setupRouter } from "@tests/utils/setupRouter";
+import { beforeEach, describe, expect, it, vi } from "vitest";
+
+import { useAuthStore } from "@/app/store/authStore";
 
 describe("LoginForm", () => {
   beforeEach(() => {

@@ -1,4 +1,5 @@
 import { Skeleton } from "@/components/ui/skeleton";
+
 import { NavSkeleton } from "../shared/nav-skeleton";
 import { SidebarProvider } from "../ui/sidebar";
 

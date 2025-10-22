@@ -1,3 +1,4 @@
+import { NavLogo } from "./nav-logo";
 import {
   Sidebar,
   SidebarContent,
@@ -7,7 +8,6 @@ import {
   SidebarRail,
 } from "../ui/sidebar";
 import { Skeleton } from "../ui/skeleton";
-import { NavLogo } from "./nav-logo";
 
 export function NavSkeleton({
   ...props
@@ -19,8 +19,8 @@ export function NavSkeleton({
       </SidebarHeader>
       <SidebarContent className="p-2">
         <div className="flex flex-col gap-1">
-          {Array.from({ length: 5 }).map((_, i) => (
-            <SidebarMenuSkeleton key={i} showIcon />
+          {Array.from({ length: 5 }).map(() => (
+            <SidebarMenuSkeleton key={crypto.randomUUID()} showIcon />
           ))}
         </div>
       </SidebarContent>

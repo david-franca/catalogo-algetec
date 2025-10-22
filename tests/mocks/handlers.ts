@@ -1,6 +1,7 @@
+import { http, HttpResponse } from "msw";
+
 import { env } from "@/env";
 import { LoginSchema } from "@/features/authentication/schemas";
-import { http, HttpResponse } from "msw";
 
 const API_BASE_URL = env.VITE_API_URL;
 const VALID_CREDENTIALS = {
@@ -48,25 +49,16 @@ export const loginHandler = http.post(
   }
 );
 
-export const loginHandlerError401 = http.post(
-  `${API_BASE_URL}/login`,
-  async () => {
-    return HttpResponse.json(
-      { message: "Invalid credentials" },
-      { status: 401 }
-    );
-  }
-);
+export const loginHandlerError401 = http.post(`${API_BASE_URL}/login`, () => {
+  return HttpResponse.json({ message: "Invalid credentials" }, { status: 401 });
+});
 
-export const loginHandlerError500 = http.post(
-  `${API_BASE_URL}/login`,
-  async () => {
-    return HttpResponse.json(
-      { message: "Internal Server Error" },
-      { status: 500 }
-    );
-  }
-);
+export const loginHandlerError500 = http.post(`${API_BASE_URL}/login`, () => {
+  return HttpResponse.json(
+    { message: "Internal Server Error" },
+    { status: 500 }
+  );
+});
 
 // Agrupe todos os handlers que devem estar ativos por padrão
 export const handlers = [loginHandler];

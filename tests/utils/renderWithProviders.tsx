@@ -1,8 +1,11 @@
-import { Toaster } from "@/components/ui/sonner";
+import type { ReactElement } from "react";
+
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { RouterProvider, type AnyRouter } from "@tanstack/react-router";
 import { render } from "@testing-library/react";
-import type { ReactElement } from "react";
+
+import { Toaster } from "@/components/ui/sonner";
+
 
 // Opções para a nossa função de render
 interface RenderWithOptions {

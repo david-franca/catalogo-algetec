@@ -1,4 +1,5 @@
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
+
 import { getEquivalencies } from "../api/getAll";
 
 export const useGetEquivalencies = () => {
