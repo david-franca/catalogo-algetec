@@ -58,7 +58,6 @@ export function NavMain({
         title: string;
         icon?: LucideIcon;
         color?: string;
-        isActive?: boolean;
         items?: {
           title: string;
           slug: string;
@@ -67,8 +66,11 @@ export function NavMain({
       }[]
     | undefined;
 }) {
-  const { subcategorySlug } = useParams({
-    select: (params) => ({ subcategorySlug: params.subcategorySlug }),
+  const { subcategorySlug, categorySlug } = useParams({
+    select: (params) => ({
+      subcategorySlug: params.subcategorySlug,
+      categorySlug: params.categorySlug,
+    }),
     strict: false,
   });
 
@@ -77,7 +79,11 @@ export function NavMain({
     // Inicializa o estado com os itens que devem estar abertos por padrão (ativos)
     const initiallyOpen = new Set<string>();
     items?.forEach((item) => {
-      if (item.isActive) {
+      // Verifica se algum subitem desta categoria corresponde ao slug da categoria na URL
+      const isCurrentCategory = item.items?.some(
+        (subItem) => subItem.category === categorySlug
+      );
+      if (isCurrentCategory) {
         initiallyOpen.add(item.title);
       }
     });
@@ -103,61 +109,69 @@ export function NavMain({
     <SidebarGroup>
       <SidebarGroupLabel>{t("navUser.categories")}</SidebarGroupLabel>
       <SidebarMenu>
-        {items?.map((item) => (
-          <Collapsible
-            key={crypto.randomUUID()}
-            open={openItems.has(item.title)}
-            onOpenChange={() => toggleItem(item.title)}
-            className="group/collapsible"
-          >
-            <SidebarMenuItem>
-              <CollapsibleTrigger asChild>
-                <SidebarMenuButton
-                  tooltip={item.title}
-                  isActive={item.isActive}
-                  className={
-                    item.color
-                      ? colorClasses[item.color as keyof typeof colorClasses]
-                      : ""
-                  }
-                >
-                  {item.icon && <item.icon />}
-                  <span className="truncate">{item.title}</span>
-                  <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
-                </SidebarMenuButton>
-              </CollapsibleTrigger>
-              <CollapsibleContent>
-                <SidebarMenuSub>
-                  {item.items?.map((subItem) => (
-                    <SidebarMenuSubItem key={subItem.title}>
-                      <SidebarMenuSubButton
-                        asChild
-                        isActive={subItem.slug === subcategorySlug}
-                        className={
-                          item.color
-                            ? subColorClasses[
-                                item.color as keyof typeof subColorClasses
-                              ]
-                            : ""
-                        }
-                      >
-                        <Link
-                          to="/catalog/$categorySlug/$subcategorySlug"
-                          params={{
-                            categorySlug: subItem.category,
-                            subcategorySlug: subItem.slug,
-                          }}
+        {items?.map((item) => {
+          // Determina se a categoria atual é a ativa com base no categorySlug da URL.
+          // Usamos `find` porque só precisamos de uma correspondência.
+          const isCurrentCategoryActive = item.items?.find(
+            (subItem) => subItem.category === categorySlug
+          );
+
+          return (
+            <Collapsible
+              key={item.title} // Usar um valor estável como chave
+              open={openItems.has(item.title)}
+              onOpenChange={() => toggleItem(item.title)}
+              className="group/collapsible"
+            >
+              <SidebarMenuItem>
+                <CollapsibleTrigger asChild>
+                  <SidebarMenuButton
+                    tooltip={item.title}
+                    isActive={!!isCurrentCategoryActive}
+                    className={
+                      item.color
+                        ? colorClasses[item.color as keyof typeof colorClasses]
+                        : ""
+                    }
+                  >
+                    {item.icon && <item.icon />}
+                    <span className="truncate">{item.title}</span>
+                    <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
+                  </SidebarMenuButton>
+                </CollapsibleTrigger>
+                <CollapsibleContent>
+                  <SidebarMenuSub>
+                    {item.items?.map((subItem) => (
+                      <SidebarMenuSubItem key={subItem.title}>
+                        <SidebarMenuSubButton
+                          asChild
+                          isActive={subItem.slug === subcategorySlug}
+                          className={
+                            item.color
+                              ? subColorClasses[
+                                  item.color as keyof typeof subColorClasses
+                                ]
+                              : ""
+                          }
                         >
-                          <span>{subItem.title}</span>
-                        </Link>
-                      </SidebarMenuSubButton>
-                    </SidebarMenuSubItem>
-                  ))}
-                </SidebarMenuSub>
-              </CollapsibleContent>
-            </SidebarMenuItem>
-          </Collapsible>
-        ))}
+                          <Link
+                            to="/catalog/$categorySlug/$subcategorySlug"
+                            params={{
+                              categorySlug: subItem.category,
+                              subcategorySlug: subItem.slug,
+                            }}
+                          >
+                            <span>{subItem.title}</span>
+                          </Link>
+                        </SidebarMenuSubButton>
+                      </SidebarMenuSubItem>
+                    ))}
+                  </SidebarMenuSub>
+                </CollapsibleContent>
+              </SidebarMenuItem>
+            </Collapsible>
+          );
+        })}
       </SidebarMenu>
     </SidebarGroup>
   );

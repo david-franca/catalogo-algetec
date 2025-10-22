@@ -6,11 +6,17 @@ import { icons } from "./sidebarIcons";
 import { useGetAllFieldsRaw } from "./useGetAllFieldsRaw";
 
 export const useGetSidebarFields = () => {
-  const { data: rawFields, isLoading, isError, error } = useGetAllFieldsRaw();
+  const {
+    data: rawFields,
+    isLoading,
+    isPending,
+    isError,
+    error,
+  } = useGetAllFieldsRaw();
   const { i18n } = useTranslation();
 
   // Se os dados brutos ainda não estiverem disponíveis, retorna o estado de carregamento/erro
-  if (isLoading || isError || !rawFields) {
+  if (isLoading || isPending || isError || !rawFields) {
     return { data: undefined, isLoading, isError, error };
   }
 
@@ -52,5 +58,5 @@ export const useGetSidebarFields = () => {
       };
     }
   );
-  return { data: mainFields, isLoading, isError, error };
+  return { data: mainFields, isLoading, isError, error, isPending };
 };
