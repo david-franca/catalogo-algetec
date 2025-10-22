@@ -3,6 +3,9 @@ import { ChevronsUpDown, LogOut, MoonIcon, SunIcon } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 import { useAuthStore } from "@/app/store/authStore";
+import en from "@/assets/en-US.svg";
+import es from "@/assets/es-ES.svg";
+import pt from "@/assets/pt-BR.svg";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -149,7 +152,7 @@ export function NavUser({ user }: { user: UserResponse | null }) {
                       loading="lazy"
                       decoding="async"
                       alt="Brazil"
-                      src="http://purecatamphetamine.github.io/country-flag-icons/1x1/BR.svg"
+                      src={pt}
                     />
                   </DropdownMenuItem>
                   <DropdownMenuItem
@@ -162,7 +165,7 @@ export function NavUser({ user }: { user: UserResponse | null }) {
                       loading="lazy"
                       decoding="async"
                       alt="United States"
-                      src="http://purecatamphetamine.github.io/country-flag-icons/1x1/US.svg"
+                      src={en}
                     />
                   </DropdownMenuItem>
                   <DropdownMenuItem
@@ -175,7 +178,7 @@ export function NavUser({ user }: { user: UserResponse | null }) {
                       loading="lazy"
                       decoding="async"
                       alt="Spanish"
-                      src="http://purecatamphetamine.github.io/country-flag-icons/1x1/ES.svg"
+                      src={es}
                     />
                   </DropdownMenuItem>
                 </DropdownMenuSubContent>
