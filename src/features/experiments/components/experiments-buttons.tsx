@@ -14,14 +14,14 @@ export function ExperimentsButtons({ link }: ExperimentDetailsProps) {
   };
 
   return (
-    <div className="flex flex-col lg:flex-row items-center justify-center gap-4 w-full px-2">
+    <div className="flex flex-col xl:flex-row items-center justify-center gap-4 w-full px-2">
       <ExperimentsDialog />
       {link && (
-        <Button size="sm" onClick={openLink} className="w-full lg:w-auto">
+        <Button size="sm" onClick={openLink} className="w-full xl:w-auto">
           Testar Laboratório
         </Button>
       )}
-      <Button size="sm" className="w-full lg:w-auto">
+      <Button size="sm" className="w-full xl:w-auto">
         Adicionar a lista
       </Button>
     </div>

@@ -48,7 +48,7 @@ export const Route = createFileRoute(
       equivalences,
       languages,
       crumb: {
-        text: experimentData.name,
+        text: experimentData.name.replace(" ", "-").toLocaleLowerCase(),
         to: "/catalog/$categorySlug/$subcategorySlug/$experimentId",
       },
     };

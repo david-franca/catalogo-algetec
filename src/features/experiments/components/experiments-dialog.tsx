@@ -43,7 +43,7 @@ export function ExperimentsDialog() {
   return (
     <Dialog>
       <form
-        className="w-full lg:w-auto"
+        className="w-full xl:w-auto"
         noValidate
         onSubmit={(...args) => void handleSubmit(onSubmit)(...args)}
       >

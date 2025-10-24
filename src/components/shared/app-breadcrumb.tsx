@@ -15,6 +15,7 @@ interface CrumbData {
   tKey?: string; // Chave de tradução
   text?: string; // Texto dinâmico
   to?: string;
+  disabled?: boolean;
 }
 
 export function AppBreadcrumb() {
@@ -52,7 +53,9 @@ export function AppBreadcrumb() {
                 <BreadcrumbPage>{getCrumbLabel(crumb)}</BreadcrumbPage>
               ) : (
                 <BreadcrumbLink asChild>
-                  <Link to={crumb?.to}>{getCrumbLabel(crumb)}</Link>
+                  <Link disabled={crumb.disabled} to={crumb?.to}>
+                    {getCrumbLabel(crumb)}
+                  </Link>
                 </BreadcrumbLink>
               )}
             </BreadcrumbItem>

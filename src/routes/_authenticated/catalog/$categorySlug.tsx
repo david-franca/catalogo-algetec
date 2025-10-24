@@ -7,6 +7,7 @@ export const Route = createFileRoute("/_authenticated/catalog/$categorySlug")({
       crumb: {
         text: params.categorySlug,
         to: "/catalog/$categorySlug",
+        disabled: true,
       },
     };
   },
