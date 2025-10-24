@@ -118,7 +118,7 @@ export function NavMain({
 
           return (
             <Collapsible
-              key={item.title} // Usar um valor estável como chave
+              key={crypto.randomUUID()} // Usar um valor estável como chave
               open={openItems.has(item.title)}
               onOpenChange={() => toggleItem(item.title)}
               className="group/collapsible"
@@ -142,7 +142,7 @@ export function NavMain({
                 <CollapsibleContent>
                   <SidebarMenuSub>
                     {item.items?.map((subItem) => (
-                      <SidebarMenuSubItem key={subItem.title}>
+                      <SidebarMenuSubItem key={crypto.randomUUID()}>
                         <SidebarMenuSubButton
                           asChild
                           isActive={subItem.slug === subcategorySlug}

@@ -1,6 +1,7 @@
 import { createFileRoute, Outlet, redirect } from "@tanstack/react-router";
 
 import { useAuthStore } from "@/app/store/authStore";
+import { AppAside } from "@/components/shared/app-aside";
 import { AppBreadcrumb } from "@/components/shared/app-breadcrumb";
 import { AppSidebar } from "@/components/shared/app-sidebar";
 import { AppLayoutSkeleton } from "@/components/skeletons/AppLayoutSkeleton";
@@ -53,6 +54,7 @@ function AuthenticatedLayout() {
   return (
     <SidebarProvider>
       <AppSidebar />
+      <AppAside />
       <SidebarInset>
         <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12 sticky top-0 z-20 bg-background">
           <div className="flex items-center gap-2 px-4">
