@@ -50,10 +50,19 @@ export function AppBreadcrumb() {
           <Fragment key={crypto.randomUUID()}>
             <BreadcrumbItem>
               {index === crumbs.length - 1 ? (
-                <BreadcrumbPage>{getCrumbLabel(crumb)}</BreadcrumbPage>
+                // A página atual (último item) pode ter um pouco mais de espaço.
+                // `truncate` adiciona o "..." se o texto for muito longo.
+                <BreadcrumbPage className="max-w-48 truncate md:max-w-64">
+                  {getCrumbLabel(crumb)}
+                </BreadcrumbPage>
               ) : (
                 <BreadcrumbLink asChild>
-                  <Link disabled={crumb.disabled} to={crumb?.to}>
+                  <Link
+                    disabled={crumb.disabled}
+                    to={crumb?.to}
+                    // Define uma largura máxima e trunca o texto com "..."
+                    className="max-w-32 truncate md:max-w-40"
+                  >
                     {getCrumbLabel(crumb)}
                   </Link>
                 </BreadcrumbLink>

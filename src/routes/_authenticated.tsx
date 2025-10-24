@@ -1,11 +1,19 @@
+/// <reference types="user-agent-data-types" />
+
+import { useEffect } from "react";
+
 import { createFileRoute, Outlet, redirect } from "@tanstack/react-router";
+import { Search } from "lucide-react";
 
 import { useAuthStore } from "@/app/store/authStore";
 import { AppAside } from "@/components/shared/app-aside";
 import { AppBreadcrumb } from "@/components/shared/app-breadcrumb";
 import { AppSidebar } from "@/components/shared/app-sidebar";
+import { CommandPalette } from "@/components/shared/command-palette";
 import { AppLayoutSkeleton } from "@/components/skeletons/AppLayoutSkeleton";
+import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { Kbd } from "@/components/ui/kbd";
 import { Separator } from "@/components/ui/separator";
 import {
   SidebarInset,
@@ -13,6 +21,7 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar";
 import { useGetSidebarFields } from "@/features/fields/hooks/useGetSidebarFields";
+import { useDisclosure } from "@/hooks/useDisclosure";
 
 export const Route = createFileRoute("/_authenticated")({
   beforeLoad: ({ location }) => {
@@ -35,6 +44,36 @@ export const Route = createFileRoute("/_authenticated")({
 
 function AuthenticatedLayout() {
   const { isLoading, isError, error } = useGetSidebarFields();
+  const { onToggle, isOpen } = useDisclosure();
+
+  useEffect(() => {
+    const down = (e: KeyboardEvent) => {
+      // Verifica Ctrl+K ou Cmd+K
+      if ((e.key === "k" || e.key === "K") && (e.metaKey || e.ctrlKey)) {
+        e.preventDefault(); // Impede a ação padrão do navegador (ex: pesquisar)
+        onToggle(); // Alterna o estado do dialog
+      }
+    };
+
+    document.addEventListener("keydown", down);
+    // Função de limpeza para remover o listener quando o componente desmontar
+    return () => document.removeEventListener("keydown", down);
+  }, [onToggle]);
+
+  function getModifierKey() {
+    if (navigator.userAgentData?.platform) {
+      const platform = navigator.userAgentData.platform;
+      const isMac = platform === "macOS";
+      return isMac ? "⌘" : "Ctrl";
+    }
+
+    // Fallback para navegadores sem suporte (ex: Firefox, Safari)
+    const ua = navigator.userAgent.toLowerCase();
+    const isMac = /mac|iphone|ipad|ipod/.test(ua);
+    return isMac ? "⌘" : "Ctrl";
+  }
+
+  const modifierKey = getModifierKey();
 
   if (isLoading) {
     return <AppLayoutSkeleton />;
@@ -57,13 +96,27 @@ function AuthenticatedLayout() {
       <AppAside />
       <SidebarInset>
         <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12 sticky top-0 z-20 bg-background">
-          <div className="flex items-center gap-2 px-4">
+          <div className="flex items-center gap-2 px-4 w-full">
             <SidebarTrigger className="-ml-1" />
             <Separator
               orientation="vertical"
               className="mr-2 data-[orientation=vertical]:h-4"
             />
             <AppBreadcrumb />
+            <div className="ml-auto flex items-center gap-2">
+              <Button
+                variant="outline"
+                size="sm"
+                className="gap-2 text-sm text-muted-foreground"
+                onClick={onToggle}
+              >
+                <Search className="h-4 w-4" /> {/* Ícone */}
+                <span>Pesquisar...</span> {/* Placeholder */}
+                <Kbd className="ml-auto pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100">
+                  <span className="text-xs">{modifierKey}</span>K
+                </Kbd>
+              </Button>
+            </div>
           </div>
         </header>
         <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
@@ -72,6 +125,7 @@ function AuthenticatedLayout() {
           </Card>
         </div>
       </SidebarInset>
+      <CommandPalette open={isOpen} onOpenChange={onToggle} />
     </SidebarProvider>
   );
 }

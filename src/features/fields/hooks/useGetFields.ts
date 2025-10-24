@@ -8,7 +8,11 @@ export const useGetFields = (subCategory?: string) => {
     return { data: undefined, isLoading, isError, error };
   }
 
-  const experiments: { id: string; name: string; image: string | null }[] = [];
+  const experiments: {
+    id: string;
+    name: string;
+    image: string | null;
+  }[] = [];
   const cleanSubcategory = subCategory
     ?.trim()
     .split("-")
