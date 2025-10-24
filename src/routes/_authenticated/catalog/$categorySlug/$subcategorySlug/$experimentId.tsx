@@ -10,6 +10,7 @@ import {
   ExperimentsButtons,
   ExperimentSkeleton,
 } from "@/features/experiments/components";
+import { ExperimentEmptyDescription } from "@/features/experiments/components/experiment-empty-description";
 
 export const Route = createFileRoute(
   "/_authenticated/catalog/$categorySlug/$subcategorySlug/$experimentId"
@@ -85,7 +86,11 @@ function RouteComponent() {
             equivalences={experimentData.equivalences}
           />
         </div>
-        <SafeHTML html={experimentData.description} />
+        {experimentData.description ? (
+          <SafeHTML html={experimentData.description} />
+        ) : (
+          <ExperimentEmptyDescription />
+        )}
       </CardContent>
     </>
   );
