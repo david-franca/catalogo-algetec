@@ -1,5 +1,6 @@
 import { StrictMode } from "react";
 
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { createRouter, RouterProvider } from "@tanstack/react-router";
 import { createRoot } from "react-dom/client";
 import * as z from "zod";
@@ -10,7 +11,18 @@ import "./lib/i18n";
 import { routeTree } from "./routeTree.gen";
 
 z.config(pt());
-const router = createRouter({ routeTree });
+
+const queryClient = new QueryClient();
+
+const router = createRouter({
+  routeTree,
+  defaultPreload: "intent",
+  defaultStaleTime: 5000,
+  scrollRestoration: true,
+  context: {
+    queryClient,
+  },
+});
 
 declare module "@tanstack/react-router" {
   interface Register {
@@ -23,7 +35,9 @@ if (!rootElement.innerHTML) {
   const root = createRoot(rootElement);
   root.render(
     <StrictMode>
-      <RouterProvider router={router} />
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} />
+      </QueryClientProvider>
     </StrictMode>
   );
 }

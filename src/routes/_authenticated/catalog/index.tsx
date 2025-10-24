@@ -27,7 +27,7 @@ function RouteComponent() {
         <img
           src={mockup}
           alt="mockup"
-          className="float-right ml-6 mb-4 max-w-md"
+          className="float-right mb-4 md:ml-6 md:max-w-md"
         />
 
         <p className="mb-4 text-lg">{t("catalogIndex.p1")}</p>

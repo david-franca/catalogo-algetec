@@ -5,7 +5,7 @@ import {
   createRouter,
 } from "@tanstack/react-router";
 
-import { LoginForm } from "@/components/login-form";
+import { LoginForm } from "@/features/authentication/components/login-form";
 
 export const setupRouter = () => {
   // --- Setup do Router ---

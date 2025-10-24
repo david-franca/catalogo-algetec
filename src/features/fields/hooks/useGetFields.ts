@@ -1,9 +1,6 @@
-import { useTranslation } from "react-i18next";
-
 import { useGetAllFieldsRaw } from "./useGetAllFieldsRaw";
 
 export const useGetFields = (subCategory?: string) => {
-  const { t } = useTranslation();
   const { data: rawFields, isLoading, isError, error } = useGetAllFieldsRaw();
 
   // Se os dados brutos ainda não estiverem disponíveis, retorna o estado de carregamento/erro
@@ -11,7 +8,7 @@ export const useGetFields = (subCategory?: string) => {
     return { data: undefined, isLoading, isError, error };
   }
 
-  const experiments: { id: string; name: string; image: string }[] = [];
+  const experiments: { id: string; name: string; image: string | null }[] = [];
   const cleanSubcategory = subCategory
     ?.trim()
     .split("-")
@@ -26,9 +23,7 @@ export const useGetFields = (subCategory?: string) => {
         experiments.push({
           id: experiment.id,
           name: experiment.name,
-          image:
-            experiment.image ??
-            `https://placehold.co/600x400?text=${t("placeholder")}`,
+          image: experiment.image,
         });
       });
     });

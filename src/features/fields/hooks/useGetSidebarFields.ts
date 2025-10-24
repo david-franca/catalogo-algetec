@@ -46,7 +46,9 @@ export const useGetSidebarFields = () => {
     ([category, items]) => {
       return {
         title: capitalizeSentence(category), // Ex: "Ciências da Natureza"
-        color: icons.find((icon) => icon.title === category)?.color,
+        color: icons.find(
+          (icon) => icon.title.toLowerCase() === category.toLowerCase()
+        )?.color,
         icon: icons.find(
           (icon) => icon.title.toLowerCase() === category.toLowerCase()
         )?.icon,

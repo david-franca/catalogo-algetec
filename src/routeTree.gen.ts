@@ -19,6 +19,8 @@ import { Route as AuthenticatedCatalogIndexRouteImport } from './routes/_authent
 import { Route as AuthenticatedCatalogDashboardRouteImport } from './routes/_authenticated/catalog/dashboard'
 import { Route as AuthenticatedCatalogCategorySlugRouteImport } from './routes/_authenticated/catalog/$categorySlug'
 import { Route as AuthenticatedCatalogCategorySlugSubcategorySlugRouteImport } from './routes/_authenticated/catalog/$categorySlug/$subcategorySlug'
+import { Route as AuthenticatedCatalogCategorySlugSubcategorySlugIndexRouteImport } from './routes/_authenticated/catalog/$categorySlug/$subcategorySlug/index'
+import { Route as AuthenticatedCatalogCategorySlugSubcategorySlugExperimentIdRouteImport } from './routes/_authenticated/catalog/$categorySlug/$subcategorySlug/$experimentId'
 
 const PublicRoute = PublicRouteImport.update({
   id: '/_public',
@@ -72,6 +74,21 @@ const AuthenticatedCatalogCategorySlugSubcategorySlugRoute =
     path: '/$subcategorySlug',
     getParentRoute: () => AuthenticatedCatalogCategorySlugRoute,
   } as any)
+const AuthenticatedCatalogCategorySlugSubcategorySlugIndexRoute =
+  AuthenticatedCatalogCategorySlugSubcategorySlugIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => AuthenticatedCatalogCategorySlugSubcategorySlugRoute,
+  } as any)
+const AuthenticatedCatalogCategorySlugSubcategorySlugExperimentIdRoute =
+  AuthenticatedCatalogCategorySlugSubcategorySlugExperimentIdRouteImport.update(
+    {
+      id: '/$experimentId',
+      path: '/$experimentId',
+      getParentRoute: () =>
+        AuthenticatedCatalogCategorySlugSubcategorySlugRoute,
+    } as any,
+  )
 
 export interface FileRoutesByFullPath {
   '/catalog': typeof AuthenticatedCatalogRouteWithChildren
@@ -81,7 +98,9 @@ export interface FileRoutesByFullPath {
   '/catalog/$categorySlug': typeof AuthenticatedCatalogCategorySlugRouteWithChildren
   '/catalog/dashboard': typeof AuthenticatedCatalogDashboardRoute
   '/catalog/': typeof AuthenticatedCatalogIndexRoute
-  '/catalog/$categorySlug/$subcategorySlug': typeof AuthenticatedCatalogCategorySlugSubcategorySlugRoute
+  '/catalog/$categorySlug/$subcategorySlug': typeof AuthenticatedCatalogCategorySlugSubcategorySlugRouteWithChildren
+  '/catalog/$categorySlug/$subcategorySlug/$experimentId': typeof AuthenticatedCatalogCategorySlugSubcategorySlugExperimentIdRoute
+  '/catalog/$categorySlug/$subcategorySlug/': typeof AuthenticatedCatalogCategorySlugSubcategorySlugIndexRoute
 }
 export interface FileRoutesByTo {
   '/recover': typeof PublicRecoverRoute
@@ -90,7 +109,8 @@ export interface FileRoutesByTo {
   '/catalog/$categorySlug': typeof AuthenticatedCatalogCategorySlugRouteWithChildren
   '/catalog/dashboard': typeof AuthenticatedCatalogDashboardRoute
   '/catalog': typeof AuthenticatedCatalogIndexRoute
-  '/catalog/$categorySlug/$subcategorySlug': typeof AuthenticatedCatalogCategorySlugSubcategorySlugRoute
+  '/catalog/$categorySlug/$subcategorySlug/$experimentId': typeof AuthenticatedCatalogCategorySlugSubcategorySlugExperimentIdRoute
+  '/catalog/$categorySlug/$subcategorySlug': typeof AuthenticatedCatalogCategorySlugSubcategorySlugIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -103,7 +123,9 @@ export interface FileRoutesById {
   '/_authenticated/catalog/$categorySlug': typeof AuthenticatedCatalogCategorySlugRouteWithChildren
   '/_authenticated/catalog/dashboard': typeof AuthenticatedCatalogDashboardRoute
   '/_authenticated/catalog/': typeof AuthenticatedCatalogIndexRoute
-  '/_authenticated/catalog/$categorySlug/$subcategorySlug': typeof AuthenticatedCatalogCategorySlugSubcategorySlugRoute
+  '/_authenticated/catalog/$categorySlug/$subcategorySlug': typeof AuthenticatedCatalogCategorySlugSubcategorySlugRouteWithChildren
+  '/_authenticated/catalog/$categorySlug/$subcategorySlug/$experimentId': typeof AuthenticatedCatalogCategorySlugSubcategorySlugExperimentIdRoute
+  '/_authenticated/catalog/$categorySlug/$subcategorySlug/': typeof AuthenticatedCatalogCategorySlugSubcategorySlugIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -116,6 +138,8 @@ export interface FileRouteTypes {
     | '/catalog/dashboard'
     | '/catalog/'
     | '/catalog/$categorySlug/$subcategorySlug'
+    | '/catalog/$categorySlug/$subcategorySlug/$experimentId'
+    | '/catalog/$categorySlug/$subcategorySlug/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/recover'
@@ -124,6 +148,7 @@ export interface FileRouteTypes {
     | '/catalog/$categorySlug'
     | '/catalog/dashboard'
     | '/catalog'
+    | '/catalog/$categorySlug/$subcategorySlug/$experimentId'
     | '/catalog/$categorySlug/$subcategorySlug'
   id:
     | '__root__'
@@ -137,6 +162,8 @@ export interface FileRouteTypes {
     | '/_authenticated/catalog/dashboard'
     | '/_authenticated/catalog/'
     | '/_authenticated/catalog/$categorySlug/$subcategorySlug'
+    | '/_authenticated/catalog/$categorySlug/$subcategorySlug/$experimentId'
+    | '/_authenticated/catalog/$categorySlug/$subcategorySlug/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -216,17 +243,49 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedCatalogCategorySlugSubcategorySlugRouteImport
       parentRoute: typeof AuthenticatedCatalogCategorySlugRoute
     }
+    '/_authenticated/catalog/$categorySlug/$subcategorySlug/': {
+      id: '/_authenticated/catalog/$categorySlug/$subcategorySlug/'
+      path: '/'
+      fullPath: '/catalog/$categorySlug/$subcategorySlug/'
+      preLoaderRoute: typeof AuthenticatedCatalogCategorySlugSubcategorySlugIndexRouteImport
+      parentRoute: typeof AuthenticatedCatalogCategorySlugSubcategorySlugRoute
+    }
+    '/_authenticated/catalog/$categorySlug/$subcategorySlug/$experimentId': {
+      id: '/_authenticated/catalog/$categorySlug/$subcategorySlug/$experimentId'
+      path: '/$experimentId'
+      fullPath: '/catalog/$categorySlug/$subcategorySlug/$experimentId'
+      preLoaderRoute: typeof AuthenticatedCatalogCategorySlugSubcategorySlugExperimentIdRouteImport
+      parentRoute: typeof AuthenticatedCatalogCategorySlugSubcategorySlugRoute
+    }
   }
 }
 
+interface AuthenticatedCatalogCategorySlugSubcategorySlugRouteChildren {
+  AuthenticatedCatalogCategorySlugSubcategorySlugExperimentIdRoute: typeof AuthenticatedCatalogCategorySlugSubcategorySlugExperimentIdRoute
+  AuthenticatedCatalogCategorySlugSubcategorySlugIndexRoute: typeof AuthenticatedCatalogCategorySlugSubcategorySlugIndexRoute
+}
+
+const AuthenticatedCatalogCategorySlugSubcategorySlugRouteChildren: AuthenticatedCatalogCategorySlugSubcategorySlugRouteChildren =
+  {
+    AuthenticatedCatalogCategorySlugSubcategorySlugExperimentIdRoute:
+      AuthenticatedCatalogCategorySlugSubcategorySlugExperimentIdRoute,
+    AuthenticatedCatalogCategorySlugSubcategorySlugIndexRoute:
+      AuthenticatedCatalogCategorySlugSubcategorySlugIndexRoute,
+  }
+
+const AuthenticatedCatalogCategorySlugSubcategorySlugRouteWithChildren =
+  AuthenticatedCatalogCategorySlugSubcategorySlugRoute._addFileChildren(
+    AuthenticatedCatalogCategorySlugSubcategorySlugRouteChildren,
+  )
+
 interface AuthenticatedCatalogCategorySlugRouteChildren {
-  AuthenticatedCatalogCategorySlugSubcategorySlugRoute: typeof AuthenticatedCatalogCategorySlugSubcategorySlugRoute
+  AuthenticatedCatalogCategorySlugSubcategorySlugRoute: typeof AuthenticatedCatalogCategorySlugSubcategorySlugRouteWithChildren
 }
 
 const AuthenticatedCatalogCategorySlugRouteChildren: AuthenticatedCatalogCategorySlugRouteChildren =
   {
     AuthenticatedCatalogCategorySlugSubcategorySlugRoute:
-      AuthenticatedCatalogCategorySlugSubcategorySlugRoute,
+      AuthenticatedCatalogCategorySlugSubcategorySlugRouteWithChildren,
   }
 
 const AuthenticatedCatalogCategorySlugRouteWithChildren =

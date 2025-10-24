@@ -1,25 +1,29 @@
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import type { QueryClient } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { createRootRoute, HeadContent, Outlet } from "@tanstack/react-router";
+import {
+  createRootRouteWithContext,
+  HeadContent,
+  Outlet,
+} from "@tanstack/react-router";
 
 import { ThemeProvider } from "@/app/providers/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
 
-const queryClient = new QueryClient();
-
 const RootLayout = () => (
   <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-    <QueryClientProvider client={queryClient}>
-      <HeadContent />
-      <Outlet />
-      {/* <TanStackRouterDevtools /> */}
-      <ReactQueryDevtools initialIsOpen={false} />
-      <Toaster />
-    </QueryClientProvider>
+    <HeadContent />
+    <Outlet />
+    {/* <TanStackRouterDevtools /> */}
+    <ReactQueryDevtools initialIsOpen={false} />
+    <Toaster />
   </ThemeProvider>
 );
 
-export const Route = createRootRoute({
+interface RouterContext {
+  queryClient: QueryClient;
+}
+
+export const Route = createRootRouteWithContext<RouterContext>()({
   component: RootLayout,
   head: () => ({
     meta: [{ title: "Catálogo de Produtos" }],
