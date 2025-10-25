@@ -111,15 +111,13 @@ export function LoginForm({
         </CardContent>
       </Card>
       <div className="text-muted-foreground *:[a]:hover:text-primary text-center text-xs text-balance *:[a]:underline *:[a]:underline-offset-4">
-        <Trans i18nKey="login.terms.fullText">
-          Ao clicar em continuar, você concorda com os nossos{" "}
-          <a href="#">Termos de Serviço</a> e{" "}
-          <a href="#">Política de Privacidade</a>.
-        </Trans>
-        {/* 
-          TODO: Adicionar links reais. 
-          Ex: <a href="/terms">Termos de Serviço</a>
-        */}
+        <Trans
+          i18nKey="login.terms.fullText"
+          components={{
+            1: <a href="#" />,
+            3: <a href="#" />,
+          }}
+        />
       </div>
     </div>
   );

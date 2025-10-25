@@ -16,6 +16,7 @@ import { Route as PublicSignupRouteImport } from './routes/_public/signup'
 import { Route as PublicRecoverRouteImport } from './routes/_public/recover'
 import { Route as AuthenticatedCatalogRouteImport } from './routes/_authenticated/catalog'
 import { Route as AuthenticatedCatalogIndexRouteImport } from './routes/_authenticated/catalog/index'
+import { Route as AuthenticatedCatalogNewsRouteImport } from './routes/_authenticated/catalog/news'
 import { Route as AuthenticatedCatalogDashboardRouteImport } from './routes/_authenticated/catalog/dashboard'
 import { Route as AuthenticatedCatalogCategorySlugRouteImport } from './routes/_authenticated/catalog/$categorySlug'
 import { Route as AuthenticatedCatalogCategorySlugSubcategorySlugRouteImport } from './routes/_authenticated/catalog/$categorySlug/$subcategorySlug'
@@ -54,6 +55,12 @@ const AuthenticatedCatalogIndexRoute =
   AuthenticatedCatalogIndexRouteImport.update({
     id: '/',
     path: '/',
+    getParentRoute: () => AuthenticatedCatalogRoute,
+  } as any)
+const AuthenticatedCatalogNewsRoute =
+  AuthenticatedCatalogNewsRouteImport.update({
+    id: '/news',
+    path: '/news',
     getParentRoute: () => AuthenticatedCatalogRoute,
   } as any)
 const AuthenticatedCatalogDashboardRoute =
@@ -97,6 +104,7 @@ export interface FileRoutesByFullPath {
   '/': typeof PublicIndexRoute
   '/catalog/$categorySlug': typeof AuthenticatedCatalogCategorySlugRouteWithChildren
   '/catalog/dashboard': typeof AuthenticatedCatalogDashboardRoute
+  '/catalog/news': typeof AuthenticatedCatalogNewsRoute
   '/catalog/': typeof AuthenticatedCatalogIndexRoute
   '/catalog/$categorySlug/$subcategorySlug': typeof AuthenticatedCatalogCategorySlugSubcategorySlugRouteWithChildren
   '/catalog/$categorySlug/$subcategorySlug/$experimentId': typeof AuthenticatedCatalogCategorySlugSubcategorySlugExperimentIdRoute
@@ -108,6 +116,7 @@ export interface FileRoutesByTo {
   '/': typeof PublicIndexRoute
   '/catalog/$categorySlug': typeof AuthenticatedCatalogCategorySlugRouteWithChildren
   '/catalog/dashboard': typeof AuthenticatedCatalogDashboardRoute
+  '/catalog/news': typeof AuthenticatedCatalogNewsRoute
   '/catalog': typeof AuthenticatedCatalogIndexRoute
   '/catalog/$categorySlug/$subcategorySlug/$experimentId': typeof AuthenticatedCatalogCategorySlugSubcategorySlugExperimentIdRoute
   '/catalog/$categorySlug/$subcategorySlug': typeof AuthenticatedCatalogCategorySlugSubcategorySlugIndexRoute
@@ -122,6 +131,7 @@ export interface FileRoutesById {
   '/_public/': typeof PublicIndexRoute
   '/_authenticated/catalog/$categorySlug': typeof AuthenticatedCatalogCategorySlugRouteWithChildren
   '/_authenticated/catalog/dashboard': typeof AuthenticatedCatalogDashboardRoute
+  '/_authenticated/catalog/news': typeof AuthenticatedCatalogNewsRoute
   '/_authenticated/catalog/': typeof AuthenticatedCatalogIndexRoute
   '/_authenticated/catalog/$categorySlug/$subcategorySlug': typeof AuthenticatedCatalogCategorySlugSubcategorySlugRouteWithChildren
   '/_authenticated/catalog/$categorySlug/$subcategorySlug/$experimentId': typeof AuthenticatedCatalogCategorySlugSubcategorySlugExperimentIdRoute
@@ -136,6 +146,7 @@ export interface FileRouteTypes {
     | '/'
     | '/catalog/$categorySlug'
     | '/catalog/dashboard'
+    | '/catalog/news'
     | '/catalog/'
     | '/catalog/$categorySlug/$subcategorySlug'
     | '/catalog/$categorySlug/$subcategorySlug/$experimentId'
@@ -147,6 +158,7 @@ export interface FileRouteTypes {
     | '/'
     | '/catalog/$categorySlug'
     | '/catalog/dashboard'
+    | '/catalog/news'
     | '/catalog'
     | '/catalog/$categorySlug/$subcategorySlug/$experimentId'
     | '/catalog/$categorySlug/$subcategorySlug'
@@ -160,6 +172,7 @@ export interface FileRouteTypes {
     | '/_public/'
     | '/_authenticated/catalog/$categorySlug'
     | '/_authenticated/catalog/dashboard'
+    | '/_authenticated/catalog/news'
     | '/_authenticated/catalog/'
     | '/_authenticated/catalog/$categorySlug/$subcategorySlug'
     | '/_authenticated/catalog/$categorySlug/$subcategorySlug/$experimentId'
@@ -220,6 +233,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/catalog/'
       preLoaderRoute: typeof AuthenticatedCatalogIndexRouteImport
+      parentRoute: typeof AuthenticatedCatalogRoute
+    }
+    '/_authenticated/catalog/news': {
+      id: '/_authenticated/catalog/news'
+      path: '/news'
+      fullPath: '/catalog/news'
+      preLoaderRoute: typeof AuthenticatedCatalogNewsRouteImport
       parentRoute: typeof AuthenticatedCatalogRoute
     }
     '/_authenticated/catalog/dashboard': {
@@ -296,6 +316,7 @@ const AuthenticatedCatalogCategorySlugRouteWithChildren =
 interface AuthenticatedCatalogRouteChildren {
   AuthenticatedCatalogCategorySlugRoute: typeof AuthenticatedCatalogCategorySlugRouteWithChildren
   AuthenticatedCatalogDashboardRoute: typeof AuthenticatedCatalogDashboardRoute
+  AuthenticatedCatalogNewsRoute: typeof AuthenticatedCatalogNewsRoute
   AuthenticatedCatalogIndexRoute: typeof AuthenticatedCatalogIndexRoute
 }
 
@@ -303,6 +324,7 @@ const AuthenticatedCatalogRouteChildren: AuthenticatedCatalogRouteChildren = {
   AuthenticatedCatalogCategorySlugRoute:
     AuthenticatedCatalogCategorySlugRouteWithChildren,
   AuthenticatedCatalogDashboardRoute: AuthenticatedCatalogDashboardRoute,
+  AuthenticatedCatalogNewsRoute: AuthenticatedCatalogNewsRoute,
   AuthenticatedCatalogIndexRoute: AuthenticatedCatalogIndexRoute,
 }
 

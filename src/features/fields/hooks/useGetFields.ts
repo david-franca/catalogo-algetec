@@ -12,6 +12,10 @@ export const useGetFields = (subCategory?: string) => {
     id: string;
     name: string;
     image: string | null;
+    featured?: boolean;
+    beta?: boolean;
+    categorySlug: string;
+    subcategorySlug: string;
   }[] = [];
   const cleanSubcategory = subCategory
     ?.trim()
@@ -28,6 +32,10 @@ export const useGetFields = (subCategory?: string) => {
           id: experiment.id,
           name: experiment.name,
           image: experiment.image,
+          featured: experiment.status === 0,
+          beta: experiment.status === 1,
+          subcategorySlug: experiment.name.toLowerCase().replace(/\s+/g, "-"),
+          categorySlug: field.category.toLowerCase().replace(/\s+/g, "-"),
         });
       });
     });

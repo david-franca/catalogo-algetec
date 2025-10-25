@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 
 import { ImageWithFallback } from "@/components/shared/image-with-fallback";
 import { SafeHTML } from "@/components/shared/safe-html";
-import { CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { experimentQueryOptions } from "@/features/experiments/api/getById";
 import {
   ExperimentDetails,
@@ -60,7 +60,7 @@ function RouteComponent() {
   const experimentData = Route.useLoaderData();
 
   return (
-    <>
+    <Card>
       <CardHeader>
         <CardTitle>
           {experimentData.id} - {experimentData.name}
@@ -76,7 +76,7 @@ function RouteComponent() {
           <ImageWithFallback
             src={experimentData.image!}
             alt={experimentData.name}
-            className="p-12"
+            className="rounded-2xl"
             fallbackContainerClassName="rounded-2xl"
           />
           <ExperimentsButtons link={experimentData.test} />
@@ -92,6 +92,6 @@ function RouteComponent() {
           <ExperimentEmptyDescription />
         )}
       </CardContent>
-    </>
+    </Card>
   );
 }

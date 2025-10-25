@@ -48,7 +48,7 @@ export const ImageWithFallback: React.FC<ImageWithFallbackProps> = ({
         <img
           src={fallbackLogo}
           alt={alt}
-          className={cn(className)}
+          className={cn("p-12", className)}
           {...props}
         />
       </div>
@@ -60,7 +60,7 @@ export const ImageWithFallback: React.FC<ImageWithFallbackProps> = ({
       src={src}
       alt={alt}
       onError={handleError}
-      className={cn("rounded-2xl", className)}
+      className={cn(className)}
       {...props}
     />
   );

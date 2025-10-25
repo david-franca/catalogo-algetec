@@ -12,7 +12,6 @@ import { AppSidebar } from "@/components/shared/app-sidebar";
 import { CommandPalette } from "@/components/shared/command-palette";
 import { AppLayoutSkeleton } from "@/components/skeletons/AppLayoutSkeleton";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
 import { Kbd } from "@/components/ui/kbd";
 import { Separator } from "@/components/ui/separator";
 import {
@@ -95,7 +94,7 @@ function AuthenticatedLayout() {
       <AppSidebar />
       <AppAside />
       <SidebarInset>
-        <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12 sticky top-0 z-20 bg-background">
+        <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12 sticky top-0 z-20 bg-background border-b">
           <div className="flex items-center gap-2 px-4 w-full">
             <SidebarTrigger className="-ml-1" />
             <Separator
@@ -119,10 +118,8 @@ function AuthenticatedLayout() {
             </div>
           </div>
         </header>
-        <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
-          <Card>
-            <Outlet />
-          </Card>
+        <div className="flex flex-1 flex-col gap-4 p-4">
+          <Outlet />
         </div>
       </SidebarInset>
       <CommandPalette open={isOpen} onOpenChange={onToggle} />

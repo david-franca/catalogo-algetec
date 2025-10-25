@@ -1,4 +1,5 @@
-import { useParams } from "@tanstack/react-router";
+import { useLocation, useParams } from "@tanstack/react-router";
+import { useTranslation } from "react-i18next";
 
 import { icons } from "@/features/fields/hooks/sidebarIcons";
 import { cn } from "@/lib/utils";
@@ -26,6 +27,8 @@ const colorClasses = {
 export function AppAside(): React.ReactElement {
   // Usamos `strict: false` para que o hook não gere erro em rotas que não possuem os parâmetros.
   const params = useParams({ strict: false });
+  const { pathname } = useLocation();
+  const { t } = useTranslation();
 
   // Função para formatar o texto do slug (ex: "ciencias-da-natureza" -> "Ciencias Da Natureza")
   const formatSlug = (slug: string) => {
@@ -34,11 +37,13 @@ export function AppAside(): React.ReactElement {
       .replace(/\b\w/g, (char) => char.toUpperCase());
   };
 
-  let displayText = "Laboratórios Virtuais";
+  let displayText = t("navUser.virtual");
   if ("subcategorySlug" in params && params.subcategorySlug) {
     displayText = formatSlug(params.subcategorySlug);
   } else if ("categorySlug" in params && params.categorySlug) {
     displayText = formatSlug(params.categorySlug);
+  } else if ("/catalog/news" === pathname) {
+    displayText = t("navUser.news");
   }
 
   const categoryColorName = icons.find(
@@ -58,7 +63,11 @@ export function AppAside(): React.ReactElement {
     <aside
       className={cn(
         "hidden h-screen w-12 flex-col items-center justify-center border-r md:flex sticky top-0",
-        appliedClasses
+        appliedClasses,
+        {
+          "bg-fuchsia-500 dark:bg-fuchsia-900": pathname === "/catalog/news",
+          "bg-cyan-500 dark:bg-cyan-900": pathname === "/catalog",
+        }
       )}
     >
       {/* Div interna para aplicar a rotação e o modo de escrita vertical */}

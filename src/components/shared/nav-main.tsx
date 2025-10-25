@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-import { Link, useParams } from "@tanstack/react-router";
-import { ChevronRight, type LucideIcon } from "lucide-react";
+import { Link, useParams, useLocation } from "@tanstack/react-router";
+import { ChevronRight, Sparkles, type LucideIcon } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 import {
@@ -67,12 +67,10 @@ export function NavMain({
     | undefined;
 }) {
   const { subcategorySlug, categorySlug } = useParams({
-    select: (params) => ({
-      subcategorySlug: params.subcategorySlug,
-      categorySlug: params.categorySlug,
-    }),
     strict: false,
   });
+
+  const { pathname } = useLocation();
 
   // Estado para controlar os itens abertos. Armazena os títulos dos itens.
   const [openItems, setOpenItems] = useState<Set<string>>(() => {
@@ -109,6 +107,19 @@ export function NavMain({
     <SidebarGroup>
       <SidebarGroupLabel>{t("navUser.categories")}</SidebarGroupLabel>
       <SidebarMenu>
+        <SidebarMenuItem>
+          <SidebarMenuButton
+            asChild
+            tooltip={t("navUser.news")}
+            isActive={pathname === "/catalog/news"}
+            className="hover:text-fuchsia-500! data-[active=true]:text-fuchsia-500 data-[state=open]:text-fuchsia-500 hover:bg-fuchsia-500/10!"
+          >
+            <Link to="/catalog/news">
+              <Sparkles />
+              {t("navUser.news")}
+            </Link>
+          </SidebarMenuButton>
+        </SidebarMenuItem>
         {items?.map((item) => {
           // Determina se a categoria atual é a ativa com base no categorySlug da URL.
           // Usamos `find` porque só precisamos de uma correspondência.
