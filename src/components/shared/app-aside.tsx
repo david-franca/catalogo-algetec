@@ -2,7 +2,7 @@ import { useLocation, useParams } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 
 import { icons } from "@/features/fields/hooks/sidebarIcons";
-import { cn } from "@/lib/utils";
+import { cn, colorClasses, formatSlug } from "@/lib/utils";
 
 /**
  * Um componente de "aside" que exibe uma faixa vertical ao lado do conteúdo principal.
@@ -11,31 +11,11 @@ import { cn } from "@/lib/utils";
  *
  * @returns {React.ReactElement} Um elemento `<aside>` estilizado como uma faixa vertical.
  */
-const colorClasses = {
-  red: "bg-red-500 dark:bg-red-900",
-  green: "bg-green-500 dark:bg-green-900",
-  blue: "bg-blue-500 dark:bg-blue-900",
-  yellow: "bg-yellow-500 dark:bg-yellow-900",
-  purple: "bg-purple-500 dark:bg-purple-900",
-  orange: "bg-orange-500 dark:bg-orange-900",
-  pink: "bg-pink-500 dark:bg-pink-900",
-  gray: "bg-gray-500 dark:bg-gray-900",
-
-  // Adicione outras cores conforme necessário
-};
-
 export function AppAside(): React.ReactElement {
   // Usamos `strict: false` para que o hook não gere erro em rotas que não possuem os parâmetros.
   const params = useParams({ strict: false });
   const { pathname } = useLocation();
   const { t } = useTranslation();
-
-  // Função para formatar o texto do slug (ex: "ciencias-da-natureza" -> "Ciencias Da Natureza")
-  const formatSlug = (slug: string) => {
-    return slug
-      .replace(/-/g, " ")
-      .replace(/\b\w/g, (char) => char.toUpperCase());
-  };
 
   let displayText = t("navUser.virtual");
   if ("subcategorySlug" in params && params.subcategorySlug) {
@@ -62,11 +42,11 @@ export function AppAside(): React.ReactElement {
     // Adicionamos `sticky top-0` para que o componente permaneça fixo no topo durante o scroll.
     <aside
       className={cn(
-        "hidden h-screen w-12 flex-col items-center justify-center border-r md:flex sticky top-0",
+        "hidden h-screen w-12 flex-col items-center justify-center md:flex sticky top-0",
         appliedClasses,
         {
-          "bg-fuchsia-500 dark:bg-fuchsia-900": pathname === "/catalog/news",
-          "bg-cyan-500 dark:bg-cyan-900": pathname === "/catalog",
+          [colorClasses.fuchsia]: pathname === "/catalog/news",
+          [colorClasses.cyan]: pathname === "/catalog",
         }
       )}
     >

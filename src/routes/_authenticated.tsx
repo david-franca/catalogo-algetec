@@ -2,16 +2,24 @@
 
 import { useEffect } from "react";
 
-import { createFileRoute, Outlet, redirect } from "@tanstack/react-router";
-import { Search } from "lucide-react";
+import {
+  createFileRoute,
+  Outlet,
+  redirect,
+  useLocation,
+  useParams,
+} from "@tanstack/react-router";
+import { Grid, List, Search } from "lucide-react";
 
 import { useAuthStore } from "@/app/store/authStore";
+import { useModeView } from "@/app/store/modeViewStore";
 import { AppAside } from "@/components/shared/app-aside";
 import { AppBreadcrumb } from "@/components/shared/app-breadcrumb";
 import { AppSidebar } from "@/components/shared/app-sidebar";
 import { CommandPalette } from "@/components/shared/command-palette";
 import { AppLayoutSkeleton } from "@/components/skeletons/AppLayoutSkeleton";
 import { Button } from "@/components/ui/button";
+import { ButtonGroup } from "@/components/ui/button-group";
 import { Kbd } from "@/components/ui/kbd";
 import { Separator } from "@/components/ui/separator";
 import {
@@ -19,8 +27,10 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
+import { icons } from "@/features/fields/hooks/sidebarIcons";
 import { useGetSidebarFields } from "@/features/fields/hooks/useGetSidebarFields";
 import { useDisclosure } from "@/hooks/useDisclosure";
+import { cn, colorClasses, formatSlug } from "@/lib/utils";
 
 export const Route = createFileRoute("/_authenticated")({
   beforeLoad: ({ location }) => {
@@ -44,6 +54,19 @@ export const Route = createFileRoute("/_authenticated")({
 function AuthenticatedLayout() {
   const { isLoading, isError, error } = useGetSidebarFields();
   const { onToggle, isOpen } = useDisclosure();
+  const { categorySlug } = useParams({ strict: false });
+  const { pathname } = useLocation();
+  const { setViewMode, viewMode } = useModeView();
+
+  const categoryColorName = icons.find(
+    (icon) =>
+      icon.title.toLowerCase() === formatSlug(categorySlug ?? "").toLowerCase()
+  )?.color as keyof typeof colorClasses | undefined;
+
+  // Define as classes de cor a serem usadas, com um fallback para o padrão.
+  const appliedClasses = categoryColorName
+    ? colorClasses[categoryColorName]
+    : { bg: "bg-muted", text: "text-muted-foreground" };
 
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
@@ -94,15 +117,48 @@ function AuthenticatedLayout() {
       <AppSidebar />
       <AppAside />
       <SidebarInset>
-        <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12 sticky top-0 z-20 bg-background border-b">
+        <header
+          className={cn(
+            "flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12 sticky top-0 z-20 bg-background border-b",
+            appliedClasses,
+            {
+              [colorClasses.fuchsia]: pathname === "/catalog/news",
+              [colorClasses.cyan]: pathname === "/catalog",
+            }
+          )}
+        >
           <div className="flex items-center gap-2 px-4 w-full">
-            <SidebarTrigger className="-ml-1" />
+            <SidebarTrigger className="-ml-1 text-white" />
             <Separator
               orientation="vertical"
               className="mr-2 data-[orientation=vertical]:h-4"
             />
             <AppBreadcrumb />
             <div className="ml-auto flex items-center gap-2">
+              <ButtonGroup className={cn(pathname === "/catalog" && "hidden")}>
+                <Button
+                  variant="outline"
+                  size="icon"
+                  onClick={() => setViewMode("grid")}
+                  className={cn(
+                    viewMode === "grid" && "bg-accent text-accent-foreground"
+                  )}
+                  aria-label="Visualização em Grade"
+                >
+                  <Grid className="h-4 w-4" />
+                </Button>
+                <Button
+                  variant="outline"
+                  size="icon"
+                  onClick={() => setViewMode("list")}
+                  className={cn(
+                    viewMode === "list" && "bg-accent text-accent-foreground"
+                  )}
+                  aria-label="Visualização em Lista"
+                >
+                  <List className="h-4 w-4" />
+                </Button>
+              </ButtonGroup>
               <Button
                 variant="outline"
                 size="sm"

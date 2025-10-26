@@ -3,7 +3,7 @@ import { Trans, useTranslation } from "react-i18next";
 
 import mockup from "@/assets/mockup.webp";
 import { Button } from "@/components/ui/button";
-import { CardContent, CardHeader } from "@/components/ui/card";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 
 export const Route = createFileRoute("/_authenticated/catalog/")({
   component: RouteComponent,
@@ -19,7 +19,7 @@ function RouteComponent() {
   };
 
   return (
-    <>
+    <Card>
       <CardHeader>
         <h1 className="mb-4 text-3xl font-bold">{t("catalogIndex.title")}</h1>
       </CardHeader>
@@ -68,6 +68,6 @@ function RouteComponent() {
           {t("catalogIndex.button")}
         </Button>
       </CardContent>
-    </>
+    </Card>
   );
 }

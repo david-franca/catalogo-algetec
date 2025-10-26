@@ -52,23 +52,25 @@ export function AppBreadcrumb() {
               {index === crumbs.length - 1 ? (
                 // A página atual (último item) pode ter um pouco mais de espaço.
                 // `truncate` adiciona o "..." se o texto for muito longo.
-                <BreadcrumbPage className="max-w-48 truncate md:max-w-64">
+                <BreadcrumbPage className="max-w-48 truncate md:max-w-64 text-white hover:text-muted-foreground">
                   {getCrumbLabel(crumb)}
                 </BreadcrumbPage>
               ) : (
-                <BreadcrumbLink asChild>
+                <BreadcrumbLink asChild color="white">
                   <Link
                     disabled={crumb.disabled}
                     to={crumb?.to}
                     // Define uma largura máxima e trunca o texto com "..."
-                    className="max-w-32 truncate md:max-w-40"
+                    className="max-w-32 truncate md:max-w-40 text-white hover:text-muted-foreground"
                   >
                     {getCrumbLabel(crumb)}
                   </Link>
                 </BreadcrumbLink>
               )}
             </BreadcrumbItem>
-            {index < crumbs.length - 1 && <BreadcrumbSeparator />}
+            {index < crumbs.length - 1 && (
+              <BreadcrumbSeparator className="text-white" />
+            )}
           </Fragment>
         ))}
       </BreadcrumbList>
